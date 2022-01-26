@@ -26,28 +26,34 @@ const Profile = () => {
 
     if (img) {
       const uploadImg = async () => {
+
         const imgRef = ref(
           storage,
-          `avatar/${new Date().getTime()} - ${img.name}`
+          `avatars/${new Date().getTime()} - ${img.name}`
         );
         try {
           if (user.avatarPath) {
             await deleteObject(ref(storage, user.avatarPath));
           }
           const snap = await uploadBytes(imgRef, img);
+          console.log(snap);
           const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
 
           await updateDoc(doc(db, "users", auth.currentUser.uid), {
             avatar: url,
             avatarPath: snap.ref.fullPath,
+            imges:"added"
           });
 
           setImg("");
+          console.log(url);
+          console.log(snap.avatarPath)
         } catch (err) {
           console.log(err.message);
         }
       };
       uploadImg();
+      console.log(img)
     }
   }, [img]);
 
