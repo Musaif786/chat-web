@@ -16,7 +16,7 @@ const firebaseConfig = {
   // messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   // appId: process.env.REACT_APP_APP_ID,
 
-   apiKey: "AIzaSyCAxOkq8U7ncv1wUkdZdt3eRyNxeCr9aWQ",
+  apiKey: "AIzaSyCAxOkq8U7ncv1wUkdZdt3eRyNxeCr9aWQ",
   authDomain: "chatweb-6b4aa.firebaseapp.com",
   databaseURL: "https://chatweb-6b4aa-default-rtdb.firebaseio.com",
   projectId: "chatweb-6b4aa",

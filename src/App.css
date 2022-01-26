@@ -1,14 +1,18 @@
 * {
   box-sizing: border-box;
+  
 }
 
 :root {
-  --color-1: #242526;
+  --color-1: #000000ce;
+  --color-new1: #242526;
   --color-2: white;
   --color-3: #0084ff;
-  --color-4: grey;
+  --color-4: rgb(96, 189, 146);
+  --color-new4: grey;
   --color-5: #eb4034;
-  --color-6: #333;
+  --color-6: #334;
+  --color-new6: #333;
 }
 
 /* Navbar */
