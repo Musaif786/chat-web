@@ -328,11 +328,13 @@ section .form {
     display: inline-block;
   }
   .message_form input {
-    width: 50vw;
+    width: 45vw;
     margin: 0px 10px;
   }
   .message_form .btn {
-    margin: 0px;
+    margin: 1px;
+    padding: 8px 6px;
+    font-size: 14px;
   }
 
   .message_wrapper p {
