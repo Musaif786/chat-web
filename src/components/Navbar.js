@@ -18,13 +18,14 @@ const Navbar = () => {
     history.replace("/login");
   };
   return (
-    <nav>
+    <nav >
       <h3>
         <Link to="/">ChatBox</Link>
       </h3>
       <div>
         {user ? (
           <>
+          <Link to="/more">More</Link>
             <Link to="/profile">Profile</Link>
             <button className="btn" onClick={handleSignout}>
               Logout
