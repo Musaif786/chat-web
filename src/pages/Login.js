@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { updateDoc, doc } from "firebase/firestore";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -72,6 +72,10 @@ const Login = () => {
           </button>
         </div>
       </form>
+      <div className="login-with-gm-div">
+      <p>Forgot password ?  <Link to="/reset">Reset</Link> </p>
+        <p>Dont't have an account ?  <Link to="/register">   Create</Link></p>
+      </div>
     </section>
   );
 };

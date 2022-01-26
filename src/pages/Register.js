@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, db, provider } from "../firebase";
 import { setDoc, doc, Timestamp } from "firebase/firestore";
-import { useHistory } from "react-router-dom";
+import { useHistory , Link } from "react-router-dom";
+import "../Css/Register.css";
 
 const Register = () => {
   const [data, setData] = useState({
@@ -52,6 +53,13 @@ const Register = () => {
       setData({ ...data, error: err.message, loading: false });
     }
   };
+
+
+  const signinwithGoogle =()=>{
+   
+    // signInWithPopup(auth , provider);
+      
+  }
   return (
     <section>
       <h3>Create An Account</h3>
@@ -85,6 +93,10 @@ const Register = () => {
           </button>
         </div>
       </form>
+      <div className="login-with-gm-div">
+      <button style={{display:"none"}} onClick={signinwithGoogle} className="btn">Sign-in with Google</button>
+        <p>Already have account ?  <Link to="/login">   Login</Link></p>
+      </div>
     </section>
   );
 };

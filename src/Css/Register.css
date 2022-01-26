@@ -1,0 +1,24 @@
+.login-with-gm-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1px;
+    
+}
+.login-with-gm-div button{
+    color: black;
+    background-color: azure;
+    margin: 2px auto;
+    margin-bottom: 0px;
+}
+.login-with-gm-div p{
+ 
+    margin: 4px auto;
+}
+.login-with-gm-div p a{
+    color: rgb(26, 186, 226);
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 400;
+}
