@@ -55,9 +55,30 @@ const Register = () => {
   };
 
 
-  const signinwithGoogle =()=>{
+  const signinwithGoogle = async ()=>{
    
     // signInWithPopup(auth , provider);
+    try {
+      const result = await signInWithPopup(auth , provider);
+      await setDoc(doc(db, "users", result.user.uid), {
+        uid: result.user.uid,
+        name:result.user.displayName,
+        email:auth.currentUser.email,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+      });
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        error: null,
+        loading: false,
+      });
+      history.replace("/");
+    } catch (err) {
+      setData({ ...data, error: err.message, loading: false });
+    }
+  
       
   }
   return (
@@ -94,7 +115,7 @@ const Register = () => {
         </div>
       </form>
       <div className="login-with-gm-div">
-      <button style={{display:"none"}} onClick={signinwithGoogle} className="btn">Sign-in with Google</button>
+      <button style={{display:"block"}} onClick={signinwithGoogle} className="btn">Sign-in with Google</button>
         <p>Already have account ?  <Link to="/login">   Login</Link></p>
       </div>
     </section>
