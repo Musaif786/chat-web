@@ -66,14 +66,15 @@ const Register = () => {
         email:auth.currentUser.email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
+        joined: "Through gmail",
       });
-      setData({
-        name: "",
-        email: "",
-        password: "",
-        error: null,
-        loading: false,
-      });
+      // setData({
+      //   name: "",
+      //   email: "",
+      //   password: "",
+      //   error: null,
+      //   loading: false,
+      // });
       history.replace("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });

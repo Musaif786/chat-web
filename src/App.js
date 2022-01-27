@@ -10,6 +10,7 @@ import Reset from "./pages/Reset";
 import AuthProvider from "./context/auth";
 import PrivateRoute from "./components/PrivateRoute";
 import Box from "./components/Box";
+import Edit from "./pages/Edit";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/box" component={Box} />
+          <PrivateRoute exact path="/edit" component={Edit} />
 
         </Switch>
       </BrowserRouter>

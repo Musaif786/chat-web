@@ -10,7 +10,8 @@ import {
 } from "firebase/storage";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import Delete from "../components/svg/Delete";
-import { useHistory } from "react-router-dom";
+import { useHistory ,Link} from "react-router-dom";
+import Edit from "./Edit";
 
 const Profile = () => {
   const [img, setImg] = useState("");
@@ -100,6 +101,9 @@ const Profile = () => {
           <hr />
           <small>Joined on: {user.createdAt.toDate().toDateString()}</small>
         </div>
+      </div>
+      <div>
+        <Link to="/edit" >Edit</Link>
       </div>
     </section>
   ) : null;
