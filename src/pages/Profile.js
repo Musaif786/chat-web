@@ -121,7 +121,7 @@ const Profile = () => {
     <main >
 
   
-    <section  style={ {minWidth:"400px"}} >
+    <section  style={ {minWidth:"390px"}} >
       <div className="profile_container">
         <div className="img_container">
           <img src={user.avatar || Img} alt="avatar" />
