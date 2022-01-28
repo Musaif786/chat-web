@@ -8,7 +8,7 @@ import {
   uploadBytes,
   deleteObject,
 } from "firebase/storage";
-import { getDoc, doc, updateDoc, } from "firebase/firestore";
+import { getDoc, doc, updateDoc, deleteDoc, } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 
 import Delete from "../components/svg/Delete";
@@ -63,6 +63,10 @@ const Profile = () => {
       uploadImg();
       console.log(img)
     }
+
+
+
+
   }, [img]);
 
   const deleteImage = async () => {
@@ -82,15 +86,36 @@ const Profile = () => {
     }
   };
 
-  const deleteAccount =  ()=>{
+
+
+
+  const deleteAccount = async  ()=>{
   
-    const userer = auth.currentUser;
     
-deleteUser(userer).then(() => {
-  toast.success("successfully! Account has been deleted")
-}).catch((error) => {
-  toast.error("Error Occur plz logout and login again to delete your account")
-});
+    
+    try {
+      const confirm = window.confirm("want Delete account?");
+      if (confirm) {
+        const userer = auth.currentUser;
+        deleteUser(userer).then(() => {
+          toast.success("successfully! Account has been deleted")
+        }).catch((error) => {
+          toast.error("Error Occur plz logout and login again to delete your account")
+        });
+
+        await updateDoc(doc(db, "users", auth.currentUser.uid), {
+          name: "user deleted",
+          avatarPath: "",
+          isOnline: false,
+        });
+      }
+
+      
+      }catch (err) {
+        console.log(err.message);
+      }
+    
+
   }
   return user ? (
     <main >
