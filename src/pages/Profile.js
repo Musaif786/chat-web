@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Camera from "../components/svg/Camera";
 import Img from "../image1.jpg";
 import { storage, db, auth } from "../firebase";
@@ -8,15 +8,22 @@ import {
   uploadBytes,
   deleteObject,
 } from "firebase/storage";
-import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { getDoc, doc, updateDoc, } from "firebase/firestore";
+import { deleteUser } from "firebase/auth";
+
 import Delete from "../components/svg/Delete";
 import { useHistory ,Link} from "react-router-dom";
+import { toast} from "react-toastify";
 import Edit from "./Edit";
+import EditSvg from "../components/svg/EditSvg";
+import { AuthContext } from "../context/auth";
 
 const Profile = () => {
   const [img, setImg] = useState("");
   const [user, setUser] = useState();
   const history = useHistory("");
+
+  const {dark} = useContext( AuthContext)
 
   useEffect(() => {
     getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
@@ -74,8 +81,22 @@ const Profile = () => {
       console.log(err.message);
     }
   };
+
+  const deleteAccount =  ()=>{
+  
+    const userer = auth.currentUser;
+    
+deleteUser(userer).then(() => {
+  toast.success("successfully! Account has been deleted")
+}).catch((error) => {
+  toast.error("Error Occur plz logout and login again to delete your account")
+});
+  }
   return user ? (
-    <section>
+    <main >
+
+  
+    <section  style={ {minWidth:"400px"}} >
       <div className="profile_container">
         <div className="img_container">
           <img src={user.avatar || Img} alt="avatar" />
@@ -96,6 +117,9 @@ const Profile = () => {
           </div>
         </div>
         <div className="text_container">
+        <div className="edit-box edit-name">
+        <Link to="/edit" >Edit Name <EditSvg/> </Link>
+        </div>
           <h3>{user.name}</h3>
           <p>{user.email}</p>
           <hr />
@@ -103,9 +127,17 @@ const Profile = () => {
         </div>
       </div>
       <div>
-        <Link to="/edit" >Edit</Link>
+        <div className="account-delete-wrapper">
+        
+        <div className="delete-box">
+
+       <h4>Delete Account</h4>
+        <button onClick={deleteAccount} className="btn-sm"> <Delete/> </button>
+        </div>
+        </div>
       </div>
     </section>
+    </main>
   ) : null;
 };
 

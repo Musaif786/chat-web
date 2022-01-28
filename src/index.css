@@ -9,6 +9,18 @@ body {
   background: #242527;
   color: white;
 }
+body.darkbtn{
+  background-color: rgb(199, 211, 161);
+  color: black;
+ 
+}
+h3.darkbtn{
+  color: #242527;
+}
+
+/* section.darkbtn{
+  border: 1px solid #242526;
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

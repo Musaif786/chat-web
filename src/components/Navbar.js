@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import { updateDoc, doc } from "firebase/firestore";
 import { AuthContext } from "../context/auth";
 import { useHistory } from "react-router-dom";
+import Darkmodebtn from "./Darkmodebtn";
 
 const Navbar = () => {
   const history = useHistory();
@@ -25,7 +26,8 @@ const Navbar = () => {
       <div>
         {user ? (
           <>
-          <Link to="/box">Box</Link>
+          <Darkmodebtn/>
+          <Link to="/box">Posts</Link>
             <Link to="/profile">Profile</Link>
             <button className="btn" onClick={handleSignout}>
               Logout
@@ -33,6 +35,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
+          <Darkmodebtn/>
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
           </>
