@@ -74,7 +74,7 @@ const Login = () => {
       </form>
       <div className="login-with-gm-div">
       <p>Forgot password ?  <Link to="/reset">Reset</Link> </p>
-        <p>Dont't have an account ?  <Link to="/register">   Create</Link></p>
+        <p>Don't have an account ?  <Link to="/register">   Create</Link></p>
       </div>
     </section>
   );
