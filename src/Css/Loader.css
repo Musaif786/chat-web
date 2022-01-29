@@ -1,0 +1,43 @@
+.loading-wrapper{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    position: fixed;
+    top: 0px;
+    z-index: 99999;
+    display: grid;
+    place-content: center;
+}
+.home-loader{
+    height: 150px;
+    width: 150px;
+
+    position: relative;
+    
+}
+.home-loader .home-rotate{
+    height: 100%;
+    width: 100%;
+    
+    border-radius: 50%;
+    border-right: 5px solid white;
+    animation: rotate 5s linear infinite;
+    position: absolute;
+}
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.home-loader h1{
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+}

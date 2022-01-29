@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 import Loading from "../components/Loading";
+import Loader from "../components/Loader";
 
 export const AuthContext = createContext();
 
@@ -59,7 +60,7 @@ if(dark.backgroundColor == "#242527"){
 
 
   if (loading) {
-    return <Loading />;
+    return <Loader/>;
   }
   return (
     <AuthContext.Provider value={value }>{children}</AuthContext.Provider>
