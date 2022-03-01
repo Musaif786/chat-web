@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, auth, storage } from "../firebase";
+import Moment from "react-moment";
 import {
   collection,
   query,
@@ -17,6 +18,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from "../components/User";
 import MessageForm from "../components/MessageForm";
 import Message from "../components/Message";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -97,6 +99,9 @@ const Home = () => {
       url = dlUrl;
     }
 
+    if(!text){
+      console.log("invalid msg")
+    }else{
     await addDoc(collection(db, "messages", id, "chat"), {
       text,
       from: user1,
@@ -113,10 +118,12 @@ const Home = () => {
       media: url || "",
       unread: true,
     });
-
+  }
     setText("");
     setImg("");
   };
+
+
   return (
     <div className="home_container">
     
@@ -140,7 +147,25 @@ const Home = () => {
               <button title="double tap to hide users list" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
 </button>
               {/* typing added */}
+              {/* <p className="typing">{text>2 ? ("typing..."):("")}</p> */}
+
               <p className="typing">{text<2 ? (""):("typing...")}</p>
+              <div> 
+              
+
+          <div
+            className={`user_status1 ${chat.isOnline ? "online" : "offline"}`}
+          ></div>
+
+          {chat.isOnline ? (<Moment fromNow>{}</Moment>) : ("offline")}
+          {/* <div>
+          i tried to create a online and offline time but not possible not working
+          <Moment fromNow>{chat.createdAt.toDate(new Date())}</Moment>
+
+          </div> */}
+          {/* <Moment fromNow={chat.createdAt.toDate()}></Moment> */}
+        
+        </div>
             </div>
             <div className="messages">
               {msgs.length

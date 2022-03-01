@@ -40,6 +40,7 @@ const Register = () => {
         email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
+        onlineTime:new Date(),
       });
       setData({
         name: "",
@@ -66,6 +67,7 @@ const Register = () => {
         email:auth.currentUser.email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
+
         joined: "Through gmail",
       });
       // setData({
