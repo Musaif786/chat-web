@@ -154,6 +154,34 @@ section .form {
   height: calc(100vh - 70px);
   width: 100vw;
 }
+.home_container.openbar{
+  grid-template-columns: 0fr 3fr;
+  
+}
+.home_container.openbar #openbar i{
+  
+  transform: rotateY(180deg);
+  transition: 1.5s;
+}
+#openbar{
+  transition: 1.5s;
+  position: absolute;
+  top: 40px;
+  left: 0%;
+  color: red;
+  padding: 4px 5px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  height: 10px;
+  width: 80px;
+  cursor: pointer;
+}
+#openbar i{
+  color: white;
+  padding: 2px;
+  font-size: 24px;
+
+}
 .users_container {
   margin-top: 10px;
   border-right: 2px solid var(--color-6);
@@ -201,6 +229,14 @@ section .form {
   padding: 10px;
   text-align: center;
   border-bottom: 2px solid var(--color-6);
+}
+.messages_user p{
+  color: var(--color-4);
+  font-size: 16px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-weight: 500;
 }
 .no_conv {
   font-size: 20px;
@@ -369,7 +405,12 @@ section .form {
   }
   .home_container {
     grid-template-columns: 2fr 5fr;
+    
   }
+  /* .home_container.openbar{
+    grid-template-columns: 0fr 5fr;
+    
+  } */
   .user_wrapper {
     display: block;
    
@@ -417,6 +458,9 @@ section .form {
   .sm_screen {
     display: inline-block;
   }
+  .home_container.openbar .message_form input{
+    width: 70vw;
+  } 
   .message_form input {
     width: 45vw;
     margin: 0px 10px;

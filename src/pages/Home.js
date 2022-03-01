@@ -40,7 +40,18 @@ const Home = () => {
       setUsers(users);
     });
     return () => unsub();
+
+     
   }, []);
+
+  const slidebar = ()=>{
+    let openbar = document.querySelector("#openbar");
+    let side = document.querySelector(".home_container");
+    openbar.addEventListener("click",()=>{
+      side.classList.toggle("openbar");
+    })
+ }
+
 
   const selectUser = async (user) => {
     setChat(user);
@@ -108,6 +119,7 @@ const Home = () => {
   };
   return (
     <div className="home_container">
+    
       <div className="users_container">
         {users.map((user) => (
           <User
@@ -124,6 +136,11 @@ const Home = () => {
           <>
             <div className="messages_user">
               <h3>{chat.name}</h3>
+              {/* sidebar to hide the users list */}
+              <button title="double tap to hide users list" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+</button>
+              {/* typing added */}
+              <p className="typing">{text<2 ? (""):("typing...")}</p>
             </div>
             <div className="messages">
               {msgs.length
