@@ -43,7 +43,9 @@ const updateName = async (e)=>{
     e.preventDefault();
     if(newname){
 
-    
+    if( newname=="admin" | newname=="Admin" | newname=="musaif" | newname=="princess"){
+      toast("Name already taken")
+    }else{
     await updateDoc(doc(db, "users", auth.currentUser.uid,), {
         name: newname,
       }).then( done =>{
@@ -52,7 +54,7 @@ const updateName = async (e)=>{
           //history
           setTimeout(()=> history.replace("/profile"),1500);
 
-      })
+      })}
     }else{
         toast.error("Empty name not valid")
     }
