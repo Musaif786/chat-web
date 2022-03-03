@@ -318,7 +318,7 @@ section .form {
   color: white;
 }
 .friend {
-  background: var(--color-7);
+  background: var(--color-1);
 }
 .selected_user {
   background: var(--color-6);

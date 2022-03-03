@@ -5,6 +5,9 @@ function Colors() {
     let body = document.querySelector("body");
     let randomColors = document.querySelector(".randomColors");
     let messageForm = document.querySelector(".message_form");
+    let selectedUser = document.querySelector(".selected_user");
+    
+
 
     const randomColor = ()=>{
         let red = Math.floor(Math.random()*255);
@@ -13,8 +16,11 @@ function Colors() {
         let blur = (Math.random()*1);
 
         let color = `rgb(${red},${green},${blue})`;
+        let colorBlur = `rgba(${red},${green},${blue},${blur})`;
         body.style.backgroundColor=color;
         messageForm.style.backgroundColor=color;
+        selectedUser.style.backgroundColor=color;
+
     }
   return (
     <><div>
