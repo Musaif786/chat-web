@@ -4,6 +4,7 @@ import "../Css/Colors.css";
 function Colors() {
     let body = document.querySelector("body");
     let randomColors = document.querySelector(".randomColors");
+    let messageForm = document.querySelector(".message_form");
 
     const randomColor = ()=>{
         let red = Math.floor(Math.random()*255);
@@ -13,6 +14,7 @@ function Colors() {
 
         let color = `rgb(${red},${green},${blue})`;
         body.style.backgroundColor=color;
+        messageForm.style.backgroundColor=color;
     }
   return (
     <><div>
