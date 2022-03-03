@@ -1,0 +1,10 @@
+.randomColors{
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}

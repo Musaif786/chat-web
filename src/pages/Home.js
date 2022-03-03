@@ -19,6 +19,7 @@ import User from "../components/User";
 import MessageForm from "../components/MessageForm";
 import Message from "../components/Message";
 import { toast } from "react-toastify";
+import Colors from "../components/Colors";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -151,6 +152,9 @@ const Home = () => {
 
               <p className="typing">{text<2 ? (""):("typing...")}</p>
               <div> 
+              <div>
+                <Colors/>
+              </div>
               
 
           <div
@@ -182,7 +186,7 @@ const Home = () => {
             />
           </>
         ) : (
-          <h3 className="no_conv">Select a user to start conversation</h3>
+          <h3 className="no_conv">Select a user to start the conversation</h3>
         )}
       </div>
     </div>
