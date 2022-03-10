@@ -1,0 +1,67 @@
+.camera{
+    height: 450px;
+    width: 400px;
+    background-color: transparent;
+    border-radius: 10px;
+    position: relative;
+   
+}
+.result{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.hasPhoto{
+    height: 400px;
+    width: 80vh;
+    background-color: green;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+   
+}
+.Takesnap{
+    color: red;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 18px;
+    background-image: linear-gradient(to right, blue 50%, green 50%);
+  border: none;
+  outline: none;
+  appearance: none;
+    background-position: 0%;
+    background-size: 200%;
+    color: white;
+    transition: 0.5s;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 100;
+    margin-bottom: 0px;
+    cursor: pointer;
+    
+
+}
+.Takesnap:hover{
+    background-position: 100%;
+}
+.Takesnap1{
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 18px;
+    background-image: linear-gradient(to right, blue 50%, green 50%);
+  border: none;
+  outline: none;
+  appearance: none;
+    background-position: 0%;
+    background-size: 200%;
+    color: white;
+    transition: 0.5s;
+    margin: auto 5px ;
+    cursor: pointer;
+ 
+
+}
+.Takesnap1:hover{
+    background-position: 100%;
+}

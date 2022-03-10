@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import { updateDoc, doc } from "firebase/firestore";
 import { AuthContext } from "../context/auth";
 import { useHistory } from "react-router-dom";
+import Video from "./Video";
 function Box() {
   const history = useHistory();
 
@@ -19,14 +20,22 @@ function Box() {
     history.replace("/login");
   };
 
-  return <div  style={dark} className='flexbox'>
+  return <>
+
+   {/* <div  style={dark} className='flexbox'>
       Under construction
 
 
       <button className="btn" onClick={handleSignout}>
               Logout
             </button>
-  </div>;
+  </div>; */}
+
+
+  <div>
+    <Video/>
+  </div>
+  </>
 }
 
 export default Box;
