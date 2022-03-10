@@ -1,9 +1,10 @@
 .camera{
-    height: 450px;
-    width: 400px;
+    height: 350px;
+    width: 300px;
     background-color: transparent;
     border-radius: 10px;
     position: relative;
+    margin-bottom: 10px;
    
 }
 .result{

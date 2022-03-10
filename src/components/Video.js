@@ -8,7 +8,7 @@ function Video() {
 
     const getVideo = () =>{
         navigator.mediaDevices.getUserMedia({
-            video: {width: 400 , height: 400}
+            video: {width: 300 , height: 300}
         }).then(stream =>{
             let video = videoRef.current;
             video.srcObject = stream;
@@ -51,7 +51,7 @@ function Video() {
         </div>
         <div className={'result' + (hasPhoto ? 'hasPhoto' : "")}>
           <canvas ref={photoRef}></canvas>
-          <button className='Takesnap1' onClick={close}>close</button>
+          <button onClick={close} className={hasPhoto ? 'Takesnap1' : ""} > {hasPhoto ? 'close' : null}</button>
         </div>
     </>
   )
