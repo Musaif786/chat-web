@@ -8,7 +8,7 @@ function Video() {
 
     const getVideo = () =>{
         navigator.mediaDevices.getUserMedia({
-            video: {width: 300 , height: 350}
+            video: {width: 320 , height: 450}
         }).then(stream =>{
             let video = videoRef.current;
             video.srcObject = stream;
