@@ -1,13 +1,15 @@
 import React,{useEffect} from 'react';
 import "../Css/Main.css";
+import { useHistory , Link } from "react-router-dom";
+
 
 function Main() {
 
   
-  const img = "https://source.unsplash.com/200x200/?whatsapp";
+  const img = "https://source.unsplash.com/200x200/?socialmedia";
   useEffect(()=>{
 
-    const img = "https://source.unsplash.com/200x200/?chatting";
+    const img = "https://source.unsplash.com/200x200/?socialmedia";
 
   },[img])
   return (
@@ -21,11 +23,11 @@ function Main() {
 </div>
   <div className='main1'>
   
-  <h3 className='mainh3'>Welocme To Musaif Communication Website</h3>
-  
+  <h3 className='mainh3'>Welcome To Musaif Communication Website</h3>
     <p className='mainp'>
+  <hr />
     
-    Purpose of this website only for communication secret and end to end communication chat for more <button className='btn1'>Explore  </button>
+    Purpose of this website are to connect people together, communicating with friends and family members, conversations are end-to-end and fully secure communication for more <button className='btn1'><Link to="/login">Explore</Link>  </button>
     <hr /> 
     {/* <hr />
     Features of this website 
