@@ -104,9 +104,10 @@ const Profile = () => {
         });
 
         await updateDoc(doc(db, "users", auth.currentUser.uid), {
-          name: "user deleted",
+          // name: "Del",
           avatarPath: "",
           isOnline: false,
+          delted : "user account is deleted",
         });
       }
 

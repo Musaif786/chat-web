@@ -43,7 +43,7 @@ const updateName = async (e)=>{
     e.preventDefault();
     if(newname){
 
-    if( newname=="admin" | newname=="Admin" | newname=="musaif" | newname=="princess"){
+    if( newname=="admin" | newname=="Admin" | newname=="Musaif" | newname=="musaif" | newname=="princess"){
       toast("Name already taken")
     }else{
     await updateDoc(doc(db, "users", auth.currentUser.uid,), {
