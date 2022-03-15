@@ -16,12 +16,18 @@ const Navbar = () => {
       isOnline: false,
     });
     await signOut(auth);
-    history.replace("/login");
+    history.replace("/");
   };
   return (
     <nav >
       <h3>
-        <Link to="/">ChatBox</Link>
+      {user ? (
+        <Link to="/chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i>
+</Link>) : (
+  <Link to="/">Musaif </Link>
+)
+      }
+
       </h3>
       <div>
         {user ? (
@@ -36,8 +42,10 @@ const Navbar = () => {
         ) : (
           <>
           <Darkmodebtn/>
+           
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
+            
           </>
         )}
       </div>
