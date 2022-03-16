@@ -29,6 +29,7 @@ const Home = () => {
   const [msgs, setMsgs] = useState([]);
 
   const user1 = auth.currentUser.uid;
+  const date = new Date();
 
   useEffect(() => {
     const usersRef = collection(db, "users");
@@ -161,7 +162,10 @@ const Home = () => {
             className={`user_status1 ${chat.isOnline ? "online" : "offline"}`}
           ></div>
 
-          {chat.isOnline ? (<Moment fromNow>{}</Moment>) : ("offline")}
+           {chat.isOnline ? ("Online") :<Moment format='MMMM Do YYYY,'>{date}</Moment>}
+         
+
+            
           {/* <div>
           i tried to create a online and offline time but not possible not working
           <Moment fromNow>{chat.createdAt.toDate(new Date())}</Moment>
