@@ -6,7 +6,7 @@
 
 
 :root {
-  --color-1: #000000ce;
+  --color-1: hsla(0, 0%, 0%, 0.808);
   --color-new1: #242526;
   --color-2: white;
   --color-3: #0084ff;
@@ -72,17 +72,23 @@ section .form {
   text-align: center;
 }
 .btn {
-  padding: 10px;
+  padding: 8px 10px;
   border-radius: 5px;
   outline: none;
   border: 1px solid var(--color-4);
-  background: var(--color-1);
+  /* background: var(--color-1); */
+  background-image: linear-gradient(to left,rgb(113, 207, 141) 50%, black 50%);
+  background-position: 0%;
+    background-size: 200%;
   color: var(--color-2);
   cursor: pointer;
-  transition: 0.3s ease-in-out all;
+  transition: 0.8s ease-in-out all;
   font-size: 16px;
+
 }
 .btn:hover {
+color: black;
+  background-position: 100%;
   transform: scale(1.05);
 }
 .error {

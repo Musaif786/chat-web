@@ -30,7 +30,7 @@ const reset = (e)=>{
               <input type="email" name='email' value={email} id='email' onChange={(e)=>{setEmail(e.target.value)}} placeholder='your email..' />
              
           <div className='reset-btn' >
-          <button onClick={reset}  className=''>sumbit</button>
+          <button onClick={reset}  className=''>Submit</button>
 
           </div>
           </form>
