@@ -400,10 +400,10 @@ color: black;
   color: var(--color-2);
   font-weight: 400;
 }
-.login-with-gm-div{
+/* .login-with-gm-div{
 
 
-}
+} */
 .login-with-gm-div .btn-sm{
   padding: 6px 15px;
   font-size: 12px;
