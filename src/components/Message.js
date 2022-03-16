@@ -13,7 +13,7 @@ const Message = ({ msg, user1 }) => {
       ref={scrollRef}
     >
       <p className={msg.from === user1 ? "me" : "friend"}>
-        {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
+        {msg.media ? <img style={{maxHeigt:"150px", maxWidth:"150px"}} src={msg.media} alt={msg.text} /> : null}
         {msg.text}
         <br />
         <small>
