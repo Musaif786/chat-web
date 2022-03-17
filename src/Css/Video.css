@@ -10,7 +10,8 @@
    
 }
 .video{
-    border-radius: 50%;
+    border-radius: 40px;
+    margin-top: 5px;
 }
 .result{
     position: absolute;
