@@ -5,7 +5,7 @@
     border-radius: 10px;
     position: relative;
     top: 0%;
-    left: 15%;
+    left: 10%;
     margin-bottom: 10px;
    
 }
@@ -72,7 +72,7 @@
 .Takesnap1:hover{
     background-position: 100%;
 }
-canvas{
+.canvas{
     margin: 5px 10px;
     background-color: white;
     height: 250px;
