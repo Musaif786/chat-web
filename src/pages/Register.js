@@ -49,7 +49,7 @@ const Register = () => {
         error: null,
         loading: false,
       });
-      history.replace("/");
+      history.replace("/chat");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }

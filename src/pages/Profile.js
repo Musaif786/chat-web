@@ -108,6 +108,7 @@ const Profile = () => {
           avatarPath: "",
           isOnline: false,
           delted : "user account is deleted",
+          
         });
       }
 
