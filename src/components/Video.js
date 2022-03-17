@@ -19,8 +19,8 @@ function Video() {
     }
 
     const takePhoto = ()=>{
-        let height = 300;
-        let width = 250;
+        let height = 250;
+        let width = 200;
 
         let video = videoRef.current;
         let photo = photoRef.current;
@@ -46,7 +46,7 @@ function Video() {
       return (
     <>
         <div className='camera'>
-            <video ref={videoRef}></video>
+            <video className='video' ref={videoRef}></video>
             <button className='Takesnap' onClick={takePhoto}>snap</button>
         </div>
         <div className={'result' + (hasPhoto ? 'hasPhoto' : "")}>

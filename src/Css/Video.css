@@ -9,6 +9,9 @@
     margin-bottom: 10px;
    
 }
+.video{
+    border-radius: 50%;
+}
 .result{
     position: absolute;
     bottom: 0px;
@@ -43,6 +46,7 @@
     margin-bottom: 0px;
     cursor: pointer;
     
+    
 
 }
 .Takesnap:hover{
@@ -67,4 +71,12 @@
 }
 .Takesnap1:hover{
     background-position: 100%;
+}
+canvas{
+    margin: 5px 10px;
+    background-color: white;
+    height: 250px;
+    width: 200px;
+    padding: 2px;
+    border-radius: 10px;
 }
