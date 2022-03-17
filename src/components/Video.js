@@ -51,6 +51,7 @@ function Video() {
         </div>
         <div className={'result' + (hasPhoto ? 'hasPhoto' : "")}>
           <canvas ref={photoRef}></canvas>
+         
           <button onClick={close} className={hasPhoto ? 'Takesnap1' : ""} > {hasPhoto ? 'close' : null}</button>
         </div>
     </>

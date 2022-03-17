@@ -5,7 +5,10 @@ import { toast } from 'react-toastify';
 
 const  useGeoLocation =  ()=> {
 
-const [location, setLocation] = useState(false);
+const [location, setLocation] = useState({
+  loaded: false,
+  cordinates: {lat:"", long:""}
+});
 const [latitude,setLatitude] = useState("");
 const [longitude,setLongitude] = useState("");
 

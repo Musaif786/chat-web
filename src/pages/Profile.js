@@ -79,7 +79,7 @@ const Profile = () => {
           avatar: "",
           avatarPath: "",
         });
-        history.replace("/");
+        history.replace("/chat");
       }
     } catch (err) {
       console.log(err.message);

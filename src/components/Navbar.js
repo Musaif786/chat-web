@@ -33,7 +33,7 @@ const Navbar = () => {
         {user ? (
           <>
           <Darkmodebtn/>
-          <Link to="/box">Posts</Link>
+          <Link to="/box">Snap</Link>
             <Link to="/profile">Profile</Link>
             <button className="btn" onClick={handleSignout}>
               Logout
