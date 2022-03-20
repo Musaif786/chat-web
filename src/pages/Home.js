@@ -20,6 +20,8 @@ import MessageForm from "../components/MessageForm";
 import Message from "../components/Message";
 import { toast } from "react-toastify";
 import Colors from "../components/Colors";
+import useGeoLocation from "../components/useGeoLocation";
+
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -27,6 +29,8 @@ const Home = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState("");
   const [msgs, setMsgs] = useState([]);
+
+  const location = useGeoLocation();
 
   const user1 = auth.currentUser.uid;
   const date = new Date();

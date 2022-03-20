@@ -17,12 +17,14 @@ const onSuccess = (location)=>{
   setLatitude( location.coords.latitude);
   setLongitude(location.coords.longitude);
 
-
+console.log(location)
    setLocation({
     
      loaded: true,  
      lat: location.coords.latitude,
      lng: location.coords.longitude,
+     auc: location.coords.accuracy,
+     hed: location.coords.heading,
     
    });
 
