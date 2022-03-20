@@ -12,6 +12,9 @@ const [location, setLocation] = useState({
 const [latitude,setLatitude] = useState("");
 const [longitude,setLongitude] = useState("");
 
+
+ const googleMap = `https://www.google.com/maps/@${latitude},${longitude}`
+ 
 const onSuccess = (location)=>{
 
   setLatitude( location.coords.latitude);
@@ -23,8 +26,7 @@ console.log(location)
      loaded: true,  
      lat: location.coords.latitude,
      lng: location.coords.longitude,
-     auc: location.coords.accuracy,
-     hed: location.coords.heading,
+    
     
    });
 

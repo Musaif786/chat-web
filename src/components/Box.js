@@ -41,11 +41,11 @@ function Box() {
     <Video/>
      {/* <useGeoLocation/> */}
   </div>
-   <div>
+   {/* <div>
     {
       (location.loaded) ? JSON.stringify(location) : "user denied location access "
     }
-  </div> 
+  </div>  */}
   </>
 }
 
