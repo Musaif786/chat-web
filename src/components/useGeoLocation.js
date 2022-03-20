@@ -38,10 +38,12 @@ const onError = (error)=>{
   });
 }
   useEffect(()=>{
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(onSuccess,onError);
+    }else{
+      console.log("Not Available geoloctn");
 
-    
-
-navigator.geolocation.getCurrentPosition(onSuccess,onError);
+    }
 
 
 upDateLocation();
