@@ -503,6 +503,8 @@ color: black;
   }
   
   .message_wrapper{
+ margin: 2px 20px;
+ background-color: red;
 
   }
   .message_wrapper p {
