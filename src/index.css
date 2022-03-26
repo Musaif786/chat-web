@@ -53,9 +53,10 @@ body.darkbtn .message_form {
 
 body.darkbtn .message_form input[type="text"] {
   background-color: rgb(180, 180, 180);
-  color: white;
-  
-  
+  color: white; 
+}
+body.darkbtn .reset-form{
+  box-shadow: 1px 1px 4px rgb(19, 19, 19);
 }
 
 body.darkbtn .message_form .btn {
@@ -66,6 +67,9 @@ color: black;
 }
 body.darkbtn .message_form .btn:hover{
   background-position: 100%;
+}
+body.darkbtn .main1 .btn1{
+  border: 1px solid black;
 }
 /* section.darkbtn{
   border: 1px solid #242526;

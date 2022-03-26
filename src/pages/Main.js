@@ -29,6 +29,8 @@ function Main() {
     
     Purpose of this website are to connect people together, communicating with friends and family members, conversations are end-to-end and fully secure communication for more <button className='btn1'><Link to="/login">Explore</Link>  </button>
     <hr /> 
+    <marquee style={{color:""}} > Welcome to musaif world, creator, developer and programmer <a target="_blank" style={{textDecoration:"none",color:"blue"}} href="https://wa.me/+917995587687 ">Contact us <i class="fa fa-whatsapp" aria-hidden="true"></i>
+</a> </marquee>
     {/* <hr />
     Features of this website 
     <hr /> */}
