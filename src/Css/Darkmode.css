@@ -54,8 +54,8 @@ footer{
     padding: 0px 10px;
 }
 .ball{
-    height: 27px;
-    width: 28px;
+    height: 28px;
+    width: 29px;
     background-color: rgb(255, 255, 255);
     position: absolute;
     border-radius: 50%;
@@ -64,5 +64,15 @@ footer{
     padding: 0px;
 }
 .checkbox:checked + .label .ball{
-    transform: translateX(34px);
+    transform: translateX(33px);
+}
+@media screen and (max-width: 406px) {
+    .one i{
+        position: absolute;
+        left:-2;
+        top: 3px;
+        margin: auto 10px;
+        
+    }
+
 }
