@@ -22,21 +22,51 @@ body.darkbtn .delete-box h4{
   color: black;
 }
 body.darkbtn .me{
-  
-    background: #0084ff;
-    color: white;
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
+    color: black;
   
 }
 body.darkbtn .friend{
   
-  background: rgb(96, 189, 146);
-  color: white;
+  background: lightcyan;
+  color: black;
 
+}
+
+body.darkbtn .selected_user{
+  
+  background: rgb(227, 240, 240);
+  color: black;
+
+}
+body.darkbtn  #openbar i{
+  color: black;
 }
 h3.darkbtn{
   color: #242527;
 }
+body.darkbtn .message_form {
+  background-color: transparent;
+  
+}
 
+body.darkbtn .message_form input[type="text"] {
+  background-color: rgb(180, 180, 180);
+  color: white;
+  
+  
+}
+
+body.darkbtn .message_form .btn {
+color: black;
+ background-image: linear-gradient(to left,rgb(171, 211, 181) 50%, white 50%);
+  background-position: 0%;
+    background-size: 200%;
+}
+body.darkbtn .message_form .btn:hover{
+  background-position: 100%;
+}
 /* section.darkbtn{
   border: 1px solid #242526;
 } */
