@@ -299,6 +299,7 @@ color: black;
 .message_wrapper {
   margin-top: 5px;
   padding: 0px 5px;
+  
 }
 .message_wrapper img {
   width: 100%;
@@ -500,9 +501,12 @@ color: black;
     padding: 8px 6px;
     font-size: 14px;
   }
+  
+  .message_wrapper{
 
+  }
   .message_wrapper p {
-    max-width: 80%;
+    max-width: 50%;
     word-wrap: break-word;
   }
 }
