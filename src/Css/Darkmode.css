@@ -69,7 +69,7 @@ footer{
 @media screen and (max-width: 406px) {
     .one i{
         position: absolute;
-        left:-2;
+        left:-4;
         top: 3px;
         
         
