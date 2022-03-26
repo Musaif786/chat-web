@@ -502,13 +502,9 @@ color: black;
     font-size: 14px;
   }
   
-  .message_wrapper{
- margin: 2px 20px;
- background-color: red;
-
-  }
+  
   .message_wrapper p {
-    max-width: 50%;
+    max-width: 75%;
     word-wrap: break-word;
   }
 }
