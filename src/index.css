@@ -11,8 +11,27 @@ body {
 }
 body.darkbtn{
   background-color: rgb(199, 211, 161);
+  background-color: white;
   color: black;
  
+}
+body.darkbtn .text_container p{
+  color: black;
+}
+body.darkbtn .delete-box h4{
+  color: black;
+}
+body.darkbtn .me{
+  
+    background: #0084ff;
+    color: white;
+  
+}
+body.darkbtn .friend{
+  
+  background: rgb(96, 189, 146);
+  color: white;
+
 }
 h3.darkbtn{
   color: #242527;
