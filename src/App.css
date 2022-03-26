@@ -507,5 +507,11 @@ color: black;
     max-width: 75%;
     word-wrap: break-word;
   }
+  .msg-link{
+    text-decoration: none;
+    color: blue;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
 }
 

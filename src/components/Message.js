@@ -14,7 +14,9 @@ const Message = ({ msg, user1 }) => {
     >
       <p className={msg.from === user1 ? "me" : "friend"}>
         {msg.media ? <img style={{maxHeigt:"200px", maxWidth:"200px"}} src={msg.media} alt={msg.text} /> : null}
-        {msg.text}
+        {/* {msg.text} */}
+        
+        {msg.text && msg.text.charAt(5) == ":" ? (<a className="msg-link" href={ msg.text } target="_blank">[ link... ]</a>): msg.text }
         <br />
         <small>
           <Moment fromNow>{msg.createdAt.toDate()}</Moment>
