@@ -51,7 +51,7 @@ const Navbar = () => {
       
         {user ? (
           <>
-          {user.email == "mdmusaif.mm@mail.com" || user.email == "sss@mail.com" ? (<>
+          {user.email == "mdmusaif.mm@gmail.com" || user.email == "sss@mail.com" ? (<>
               
               <ul className="admin">
               <li onClick={Adminui} className="adminhidebtn">Admin-panel</li>
