@@ -57,9 +57,9 @@ const Navbar = () => {
               <li onClick={Adminui} className="adminhidebtn">Admin</li>
                <li>
                  <ul className="admin-u1">
-                    <li><Link to="/allusers">Admin page</Link></li>
-                   <li>two</li>
-                   <li> three</li>
+                    <li><Link to="/allusers">All users info</Link></li>
+                   <li><Link to="/two">Users messages</Link></li>
+                   <li> remove users </li>
                  </ul>
                </li>
               </ul>

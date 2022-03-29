@@ -13,6 +13,7 @@ import Box from "./components/Box";
 import Edit from "./pages/Edit";
 import Main from "./pages/Main";
 import Allusers from "./components/Adminpage/Allusers";
+import Two from "./components/Adminpage/Two";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <PrivateRoute exact path="/box" component={Box} />
           <PrivateRoute exact path="/edit" component={Edit} />
           <PrivateRoute exact path="/allusers" component={Allusers} />
+          <PrivateRoute exact path="/two" component={Two} />
 
         </Switch>
       </BrowserRouter>
