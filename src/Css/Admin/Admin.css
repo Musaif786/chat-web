@@ -38,6 +38,7 @@
     display: block;
     background-color: rgb(64, 65, 66);
     z-index: 100;
+    border-radius: 1px 1px 5px 5px;
     
 }
 
