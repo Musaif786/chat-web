@@ -53,11 +53,8 @@ const Home = () => {
   }, []);
 
   const slidebar = ()=>{
-    let openbar = document.querySelector("#openbar");
     let side = document.querySelector(".home_container");
-    openbar.addEventListener("click",()=>{
       side.classList.toggle("openbar");
-    })
  }
 
 

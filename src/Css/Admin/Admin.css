@@ -1,0 +1,41 @@
+.admin{
+   
+    display: block;
+    position: absolute;
+    justify-content: center;
+    top: 6px;
+    font-size: 16px;
+    left: calc(100vw - 25vw);
+    
+}
+.admin li{
+    list-style: none;
+}
+.adminhidebtn{
+    cursor: pointer;
+}
+.admin-u1{
+    display: none;
+}
+.admin-u1 li{
+    margin: 5px auto;
+    text-transform: capitalize;
+}
+.admin-u1.admin-panel{
+    margin-top: 15px;
+    display: block;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 767px) {
+.admin{
+    left: calc(100vw - 70vw);
+}
+
+}
+@media screen and (min-width: 766px) and (max-width: 1350px) {
+    .admin{
+        left: calc(100vw - 40vw);
+    }
+    
+    }
