@@ -54,7 +54,7 @@ const Navbar = () => {
           {user.email == "mdmusaif.mm@gmail.com" || user.email == "sss@mail.com" ? (<>
               
               <ul className="admin">
-              <li onClick={Adminui} className="adminhidebtn">Admin-panel</li>
+              <li onClick={Adminui} className="adminhidebtn">Admin</li>
                <li>
                  <ul className="admin-u1">
                     <li><Link to="/allusers">Admin page</Link></li>
