@@ -83,7 +83,11 @@ const Home = () => {
       await updateDoc(doc(db, "lastMsg", id), { unread: false });
     }
   };
+//saving to message 
+  const user2 = chat.uid;
 
+  const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+ //
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -179,7 +183,7 @@ const Home = () => {
             <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
-                    <Message key={i} msg={msg} user1={user1} />
+                    <Message key={i} msg={msg} user1={user1} id={id} />
                   ))
                 : null}
             </div>

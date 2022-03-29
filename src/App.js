@@ -31,7 +31,7 @@ function App() {
           <PrivateRoute exact path="/box" component={Box} />
           <PrivateRoute exact path="/edit" component={Edit} />
           <PrivateRoute exact path="/allusers" component={Allusers} />
-          <PrivateRoute exact path="/two" component={Two} />
+          <PrivateRoute exact path="/two/:id" component={Two} />
 
         </Switch>
       </BrowserRouter>

@@ -41,15 +41,15 @@ function Allusers() {
   }, []);
 
 //remove
-const deleteAccount = async  (id) =>{
+const deleteAccount = async  () =>{
   
-    
+    const delta = auth.currentUser;
     
     try {
       const confirm = window.confirm("want Delete account?");
       if (confirm) {
       // const userer = users.uid;
-        delete(id).then(() => {
+        delete(delta).then(() => {
           toast.success("successfully! Account has been deleted")
           
         }).catch((error) => {
@@ -80,12 +80,13 @@ const deleteAccount = async  (id) =>{
         <div className="users_container">
           <table border="1px" >
             <tr>
+            {users.name}
               <th>User names</th>
               <th>User id</th>
               <th>user email</th>
               <th>Created on</th>
-              <th>Remove user</th>
-              <th>update name</th>
+             {/* <th>remove</th> */}
+              <th> update field</th>
             </tr>
             
             {users.map((user) => (
@@ -95,9 +96,9 @@ const deleteAccount = async  (id) =>{
                   <td>{user.uid}</td>
                   <td>{user.email}</td>
                   <td>{user.createdAt.toDate().toDateString()}</td>
-                  <td><button  onClick={()=> deleteAccount(user.uid)} className="btn1">Remove</button></td>
+                  {/* <td><button  onClick={deleteAccount} className="btn1">Remove</button></td> */}
                   
-                  <td>  <Link to={`/allusers/${user.uid}`}>
+                  <td>  <Link to={`/two/${user.uid}`}>
                       <button className="btn1">view</button>
                   </Link></td>
                 
