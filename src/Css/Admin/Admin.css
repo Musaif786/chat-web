@@ -27,6 +27,12 @@
     background-color: transparent;
 }
 
+@media screen and (min-width: 300px) and (max-width: 500px) {
+    .admin{
+        left: calc(100vw - 80vw);
+    }
+    
+    }
 @media screen and (max-width: 767px) {
 .admin{
     left: calc(100vw - 70vw);
@@ -35,7 +41,7 @@
 }
 @media screen and (min-width: 766px) and (max-width: 1350px) {
     .admin{
-        left: calc(100vw - 40vw);
+        left: calc(100vw - 50vw);
     }
     
     }
