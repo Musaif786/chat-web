@@ -3,9 +3,10 @@
     display: block;
     position: absolute;
     justify-content: center;
-    top: 6px;
+    top: 7px;
     font-size: 16px;
     left: calc(100vw - 25vw);
+    
     
 }
 .admin li{
@@ -16,15 +17,27 @@
 }
 .admin-u1{
     display: none;
+
 }
 .admin-u1 li{
-    margin: 5px auto;
+    margin:2px;
+    padding: 5px;
     text-transform: capitalize;
+    background-color: transparent;
+    width: 100%;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+
 }
 .admin-u1.admin-panel{
-    margin-top: 15px;
+    height: 30vh;
+    position: relative;
+    top: 15px;
+    left: 0px;
+    margin:5px 0px 0px -5px ;
     display: block;
-    background-color: transparent;
+    background-color: rgb(64, 65, 66);
+    
 }
 
 @media screen and (min-width: 300px) and (max-width: 500px) {
@@ -42,6 +55,8 @@
 @media screen and (min-width: 766px) and (max-width: 1350px) {
     .admin{
         left: calc(100vw - 50vw);
+
     }
+
     
     }
