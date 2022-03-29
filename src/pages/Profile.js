@@ -126,7 +126,7 @@ const Profile = () => {
     <section  style={ {minWidth:"390px"}} >
       <div className="profile_container">
         <div className="img_container">
-          <img src={user.avatar || Img} alt="avatar" />
+          <img src={user.avatar || Img } alt="avatar" />
           <div className="overlay">
             <div>
               <label htmlFor="photo">

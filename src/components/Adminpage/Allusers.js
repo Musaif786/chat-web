@@ -1,14 +1,114 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { db, auth, storage } from "../../firebase";
+import Moment from "react-moment";
+import { Link } from "react-router-dom";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  Timestamp,
+  orderBy,
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+
+import User from "../User";
+import { toast } from "react-toastify";
+import { deleteUser } from "firebase/auth";
 
 function Allusers() {
+  const [users, setUsers] = useState([]);
+  const user1 = auth.currentUser.uid;
+
+  useEffect(() => {
+    const usersRef = collection(db, "users");
+    // create query object
+    const q = query(usersRef, where("uid", "not-in", [user1]));
+    // execute query
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let users = [];
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data());
+      });
+      setUsers(users);
+    });
+    return () => unsub();
+  }, []);
+
+//remove
+const deleteAccount = async  (id) =>{
+  
+    
+    
+    try {
+      const confirm = window.confirm("want Delete account?");
+      if (confirm) {
+      // const userer = users.uid;
+        delete(id).then(() => {
+          toast.success("successfully! Account has been deleted")
+          
+        }).catch((error) => {
+          toast.error("Error Occur try again")
+        });
+
+        await updateDoc(doc(db, "users", users.uid), {
+          // name: "Del",
+          avatarPath: "",
+          isOnline: false,
+          delted : "user account is deleted",
+          
+        });
+      }
+
+      
+      }catch (err) {
+        console.log(err.message);
+      }
+    
+
+  }
+
+ 
   return (
     <>
-    <h4>
-    Hello im admin
-    welcome to admin page your a admin of this website
-    </h4>
+      <div>
+        <div className="users_container">
+          <table border="1px" >
+            <tr>
+              <th>User names</th>
+              <th>User id</th>
+              <th>user email</th>
+              <th>Created on</th>
+              <th>Remove user</th>
+              <th>update name</th>
+            </tr>
+            
+            {users.map((user) => (
+              <>
+                <tr>
+                  <td>{user.name}</td>
+                  <td>{user.uid}</td>
+                  <td>{user.email}</td>
+                  <td>{user.createdAt.toDate().toDateString()}</td>
+                  <td><button  onClick={()=> deleteAccount(user.uid)} className="btn1">Remove</button></td>
+                  
+                  <td>  <Link to={`/allusers/${user.uid}`}>
+                      <button className="btn1">view</button>
+                  </Link></td>
+                
+                </tr>
+              </>
+            ))}
+          </table>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default Allusers
+export default Allusers;

@@ -65,6 +65,7 @@ const Register = () => {
         uid: result.user.uid,
         name:result.user.displayName,
         email:auth.currentUser.email,
+        avatar:auth.currentUser.photoURL,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
 
