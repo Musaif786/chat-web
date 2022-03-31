@@ -130,7 +130,8 @@ const Home = () => {
     setImg("");
   };
 
-
+  // screen width
+ const width =window.innerWidth ;
   return (
     <div className="home_container">
     
@@ -150,6 +151,7 @@ const Home = () => {
           <>
             <div className="messages_user">
               <h3>{chat.name}</h3>
+              {/* {width} */}
               {/* sidebar to hide the users list */}
               <button title="double tap to hide users list" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
 </button>
