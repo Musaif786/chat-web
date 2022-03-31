@@ -479,6 +479,13 @@ color: black;
     text-transform: capitalize;
     font-size: 14px;
   }
+  .user_detail .seen{
+    color: rgba(117, 153, 160, 0.915);
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
   
   .sm_container {
     padding: 10px 0px;

@@ -22,13 +22,25 @@ const User = ({ user1, user, selectUser, chat }) => {
         onClick={() => selectUser(user)}
       >
         <div className="user_info">
+        {/* user details start here */}
           <div className="user_detail">
             <img src={user.avatar || Img} alt="avatar" className="avatar" />
             <h4>{user.name}</h4>
             {data?.from !== user1 && data?.unread && (
-              <small className="unread">New</small>
+              <small className="unread">Msg</small>
             )}
+            {/* messages seen or not below code */}
+            {data && (
+          <p className="seen">
+            
+            <strong>{data.unread === false ? "Seen" : null}</strong>
+            
+          </p>
+        )}
+        
+            
           </div>
+          {/* //user details end here */}
           <div
             className={`user_status ${user.isOnline ? "online" : "offline"}`}
           ></div>
@@ -36,7 +48,9 @@ const User = ({ user1, user, selectUser, chat }) => {
         {data && (
           <p className="truncate">
             <strong>{data.from === user1 ? "Me:" : null}</strong>
+            <strong>{data.unread === false ? "seen" : null}</strong>
             {data.text}
+           
           </p>
         )}
       </div>
