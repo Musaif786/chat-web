@@ -68,7 +68,7 @@ export const Chatbot = () => {
       id: "login",
 
       message:
-        "Thanks for letting your Login issue, Please contact me on Whatsapp ( 7995587687 ) issue ASAP",
+        "Thanks for letting your Login issue, Please contact me on Whatsapp ( 7995587687 ) for quick help.",
 
       end: true,
     },
