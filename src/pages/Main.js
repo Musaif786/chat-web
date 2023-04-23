@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react';
 import "../Css/Main.css";
 import { useHistory , Link } from "react-router-dom";
+import { Chatbot } from '../components/Chatbot';
 
 
 function Main() {
@@ -24,6 +25,7 @@ function Main() {
   <div className='main1'>
   
   <h3 className='mainh3'>Welcome To Musaif Communication Website</h3>
+  <Chatbot/>
     <p className='mainp'>
   <hr />
     

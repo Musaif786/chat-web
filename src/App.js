@@ -14,6 +14,7 @@ import Edit from "./pages/Edit";
 import Main from "./pages/Main";
 import Allusers from "./components/Adminpage/Allusers";
 import Two from "./components/Adminpage/Two";
+import { Chatbot } from "./components/Chatbot";
 
 
 function App() {
