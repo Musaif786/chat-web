@@ -7,12 +7,12 @@ import { toast } from 'react-toastify';
 
 function Edit() {
     const [data, setData]= useState([]);
-    const [load, setLoad] = useState(false);
+    // const [load, setLoad] = useState(false);
     const [ newname, setNewname]= useState();
 
     const history = useHistory();
 
-    const { uid } = useParams();
+    // const { uid } = useParams();
     const id = auth.currentUser.uid
     useEffect(()=>{
         if(id){
@@ -43,7 +43,7 @@ const updateName = async (e)=>{
     e.preventDefault();
     if(newname){
 
-    if( newname=="admin" | newname=="Admin" | newname=="Musaif" | newname=="musaif" | newname=="princess"){
+    if( newname==="admin" | newname==="Admin" | newname==="Musaif" | newname==="musaif" | newname==="princess"){
       toast("Name already taken")
     }else{
     await updateDoc(doc(db, "users", auth.currentUser.uid,), {

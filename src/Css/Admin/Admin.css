@@ -29,6 +29,12 @@
     cursor: pointer;
 
 }
+.admin .admin-u1 li a:hover{
+    color: rgb(20, 148, 41);
+}
+.admin .admin-u1 li:hover{
+    color: rgb(177, 8, 8);
+}
 .admin-u1.admin-panel{
     height: 30vh;
     position: relative;
@@ -46,6 +52,15 @@
     .admin{
         left: calc(100vw - 80vw);
     }
+    .admin-container .admin{
+        display: block;
+        position: absolute;
+        justify-content: center;
+        top: 7px;
+        font-size: 16px;
+        left: calc(45vw - 25vw);
+    }
+
     
     }
 @media screen and (max-width: 767px) {

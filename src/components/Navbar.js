@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { signOut } from "firebase/auth";
@@ -11,8 +11,8 @@ import "../Css/Admin/Admin.css";
 const Navbar = () => {
   const history = useHistory();
   const { user } = useContext(AuthContext);
-  
-   //const names = auth.currentUser.email;
+
+  //const names = auth.currentUser.email;
 
   const handleSignout = async () => {
     await updateDoc(doc(db, "users", auth.currentUser.uid), {
@@ -25,65 +25,66 @@ const Navbar = () => {
   const Adminui = () => {
     // Select the .admin-u1 element
     let ul = document.querySelector(".admin-u1");
-  
+
     // Check if the element exists before toggling the class
     if (ul) {
       ul.classList.toggle("admin-panel");
-    } 
+    }
   }
-   
+
   return (
     <nav >
-    
+
       <h3>
-      {user ? (
-        <>
-
-        <Link to="/chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i>
-</Link>
-
-        </>
-
-) : (
-  <Link to="/">Musaif </Link>
-  
-)
-      }
-
-      </h3>
-      <div>
-      
         {user ? (
           <>
-          {user.email == "mdmusaif.mm@gmail.com" || user.email == "mdmusaif15@gmail.com" ? (<>
-              
+
+            <Link to="/chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i>
+            </Link>
+
+          </>
+
+        ) : (
+          <Link to="/">Musaif </Link>
+
+        )
+        }
+
+      </h3>
+      <div className="admin-container">
+
+        {user ? (
+          <>
+            {user.email == "mdmusaif.mm@gmail.com" || user.email == "mdmusaif15@gmail.com" ? (<>
+
               <ul className="admin">
-              <li onClick={Adminui} className="adminhidebtn">Admin</li>
-               <li>
-                 <ul className="admin-u1">
+                <li onClick={Adminui} className="adminhidebtn">Admin</li>
+                <li>
+                  <ul className="admin-u1">
                     <li><Link to="/allusers">Users info</Link></li>
-                   {/* <li><Link to="/two">Messages</Link></li> */}
-                   <li> remove users </li>
-                 </ul>
-               </li>
+                    {/* <li><Link to="/two">Messages</Link></li> */}
+                    <li> remove users </li>
+                  </ul>
+                </li>
               </ul>
-             </>):(<Darkmodebtn/>)}
-          {/* <Darkmodebtn/> */}
-          <Link to="/box">Snap</Link>
+            </>) : (<Darkmodebtn />)}
+            {/* <Darkmodebtn/> */}
+
+            <Link to="/box">Snap</Link>
             <Link to="/profile">Profile</Link>
-            
+
             <button className="btn" onClick={handleSignout}><i class="fa fa-sign-out" aria-hidden="true"></i>
-</button>
-           
+            </button>
+
           </>
         ) : (
           <>
-          <Darkmodebtn/>
-           
+            <Darkmodebtn />
+
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
-            
-      
+
+
           </>
         )}
       </div>

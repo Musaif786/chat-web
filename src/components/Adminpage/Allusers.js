@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { db, auth, storage } from "../../firebase";
-import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import {
   collection,
   query,
   where,
   onSnapshot,
-  addDoc,
-  Timestamp,
-  orderBy,
-  setDoc,
   doc,
-  getDoc,
   updateDoc,
 } from "firebase/firestore";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+// import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 import User from "../User";
 import { toast } from "react-toastify";
-import { deleteUser } from "firebase/auth";
+// import { deleteUser } from "firebase/auth";
 
 function Allusers() {
   const [users, setUsers] = useState([]);

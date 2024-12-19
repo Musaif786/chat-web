@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Camera from "../components/svg/Camera";
 import Img from "../image1.jpg";
 import { storage, db, auth } from "../firebase";
@@ -8,22 +8,22 @@ import {
   uploadBytes,
   deleteObject,
 } from "firebase/storage";
-import { getDoc, doc, updateDoc, deleteDoc, } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 
 import Delete from "../components/svg/Delete";
 import { useHistory ,Link} from "react-router-dom";
 import { toast} from "react-toastify";
-import Edit from "./Edit";
+// import Edit from "./Edit";
 import EditSvg from "../components/svg/EditSvg";
-import { AuthContext } from "../context/auth";
+// import { AuthContext } from "../context/auth";
 
 const Profile = () => {
   const [img, setImg] = useState("");
   const [user, setUser] = useState();
   const history = useHistory("");
 
-  const {dark} = useContext( AuthContext)
+  // const {dark} = useContext( AuthContext)
 
   useEffect(() => {
     getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
