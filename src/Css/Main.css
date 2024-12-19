@@ -160,7 +160,7 @@
         transform: translate(-50%, -50%) rotate(0deg) scale(1);
     }
     50% {
-        transform: translate(-50%, -50%) rotate(180deg) scale(5);
+        transform: translate(-50%, -50%) rotate(180deg) scale(2);
     }
     100% {
         transform: translate(-50%, -50%) rotate(360deg) scale(0.5);
