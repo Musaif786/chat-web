@@ -1,6 +1,6 @@
 export const fetchRandomPhoto = async (setRandomPhoto) => {
     const apiKey = "wCYj8T5TMJgfkOjU4GohaXhPTR4ivnanIoRM64SolxQ";
-    const apiUrl = 'https://api.unsplash.com/photos/random?query=software';
+    const apiUrl = 'https://api.unsplash.com/photos/random?query=friends';
 
     try {
         const response = await fetch(apiUrl, {

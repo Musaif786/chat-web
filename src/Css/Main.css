@@ -85,7 +85,7 @@ hr {
 .mainp{
     /* background-color: red; */
     text-align: center;
-    margin:50px 10px;
+    margin:10px 10px;
     font-size: 18px;
     padding: 20px 50px;
     text-transform: capitalize;
@@ -122,34 +122,22 @@ marquee {
     
 }
 
-/* Make text smaller on very small screens */
-@media (max-width: 600px) {
-    marquee {
-        font-size: 3vw; 
-        padding: 4px; 
-    }
-}
-
-/* Make text larger on larger screens */
-@media (min-width: 1200px) {
-    marquee {
-        font-size: 1.5vw; 
-        padding: 10px 15px; 
-    }
-}
 
 /* Typing effect */
 .typing-effect {
-    font-family: 'Arial', sans-serif;
+    /* font-family: 'Arial', sans-serif; */
     font-size: 1.2rem;
     color: #ffffff;
     white-space: nowrap;
+    margin: 5px;
     overflow: hidden; /* Hides the text that is not visible */
     border-right: 3px solid #333; /* Cursor effect */
     width: 0; /* Starts at width 0 */
     animation: typing 5s steps(60) 1s forwards;
     line-height: 1.6;
-    word-wrap: break-word
+    word-wrap: break-word;
+    font-weight: 300;
+    
 }
 
 @keyframes typing {
@@ -180,3 +168,36 @@ marquee {
 }
 
 
+
+/* Make text smaller on very small screens */
+@media (max-width: 600px) {
+    marquee {
+        font-size: 3vw; 
+        padding: 4px; 
+    }
+    .typing-effect {
+        font-size: 0.9rem;
+        font-weight: 400;
+        margin: 2px;
+        padding: 2px;
+    }
+    .mainp{
+        font-size: 0.8rem;
+        font-weight: 200;
+    }
+}
+
+/* Make text larger on larger screens */
+@media (min-width: 1200px) {
+    marquee {
+        font-size: 1.5vw; 
+        padding: 10px 15px; 
+    }
+    .typing-effect {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+    .mainp{
+        font-size: 1.2rem;
+    }
+}

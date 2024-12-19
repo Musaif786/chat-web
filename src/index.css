@@ -74,6 +74,9 @@ body.darkbtn .main1 .btn1{
 body.darkbtn .randomColors i{
   color: black;
 }
+body.darkbtn .typing-effect {
+  color: black;
+}
 /* section.darkbtn{
   border: 1px solid #242526;
 } */
