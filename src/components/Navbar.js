@@ -22,11 +22,15 @@ const Navbar = () => {
     history.replace("/");
   };
   //admin info
-   const Adminui = ()=>{
-     let ul = document.querySelector(".admin-u1");
-       ul.classList.toggle("admin-panel");
-     
-   }
+  const Adminui = () => {
+    // Select the .admin-u1 element
+    let ul = document.querySelector(".admin-u1");
+  
+    // Check if the element exists before toggling the class
+    if (ul) {
+      ul.classList.toggle("admin-panel");
+    } 
+  }
    
   return (
     <nav >
@@ -57,8 +61,8 @@ const Navbar = () => {
               <li onClick={Adminui} className="adminhidebtn">Admin</li>
                <li>
                  <ul className="admin-u1">
-                    <li><Link to="/allusers">All users info</Link></li>
-                   <li><Link to="/two">Users messages</Link></li>
+                    <li><Link to="/allusers">Users info</Link></li>
+                   {/* <li><Link to="/two">Messages</Link></li> */}
                    <li> remove users </li>
                  </ul>
                </li>
