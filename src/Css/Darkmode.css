@@ -74,7 +74,7 @@ footer {
 
 @media screen and (max-width: 390px) {
     footer {
-        right: calc(175px); /* Adjust position for smaller screens */
+        right: calc(195px); /* Adjust position for smaller screens */
         top: 25px; /* Adjust top position for better alignment */
     }
 
