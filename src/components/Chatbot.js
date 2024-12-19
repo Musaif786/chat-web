@@ -19,7 +19,7 @@ export const Chatbot = () => {
     {
       id: "Greet",
 
-      message: "Hello user, Welcome to Musaif chatting website..",
+      message: "Hello, Welcome to Musaif chatting website..",
 
       trigger: "Done",
     },
