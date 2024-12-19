@@ -17,5 +17,3 @@ const Adminroute = ({ component: Component, ...rest }) => {
 };
 
 export default Adminroute;
-
-// ,,

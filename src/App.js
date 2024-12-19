@@ -42,7 +42,7 @@ function App() {
 
           {/* Only Admin access  */}
           <Adminroute exact path="/two/:id" component={Two} />
-          <Adminroute exact path="/allusers" component={Allusers}/>
+          <Adminroute exact path="/admin" component={Allusers}/>
           {/* <Adminroute exact path="/login" component={Login}/> */}
 
         </Switch>

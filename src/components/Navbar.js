@@ -69,7 +69,7 @@ const Navbar = () => {
                 <li onClick={Adminui} className="adminhidebtn">Admin</li>
                 <li>
                   <ul className="admin-u1">
-                    <li><Link to="/allusers">Users info</Link></li>
+                    <li><Link to="/admin">Users info</Link></li>
                     {/* <li><Link to="/two">Messages</Link></li> */}
                     <li> remove users </li>
                   </ul>

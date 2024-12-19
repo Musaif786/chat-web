@@ -10,7 +10,6 @@ const Publicroute = ({ component: Component, ...rest }) => {
       {...rest}
       exact
       render={(props) =>
-        // user.email ==='mdmusaif15@gmail.com' || user.email ==='mdmusaif.mm@gmail.com'  ? <Component {...props} />: <Redirect to="/" />
         !user ? <Component {...props} /> : <Redirect to="/" />
       }
     />
