@@ -11,6 +11,14 @@ import "../Css/Admin/Admin.css";
 const Navbar = () => {
   const history = useHistory();
   const { user } = useContext(AuthContext);
+  // if (user){
+  //   console.log(user)
+  //   console.log(user.email)
+    
+  // }else{
+  //   console.log("user not exist")
+  // }
+  // console.log(user.uid)
 
   //const names = auth.currentUser.email;
 
@@ -34,14 +42,14 @@ const Navbar = () => {
 
   return (
     <nav >
-
+      
       <h3>
         {user ? (
           <>
 
             <Link to="/chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i>
             </Link>
-
+            
           </>
 
         ) : (

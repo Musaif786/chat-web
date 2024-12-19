@@ -9,6 +9,8 @@ import Profile from './pages/Profile'
 import Reset from "./pages/Reset";
 import AuthProvider from "./context/auth";
 import PrivateRoute from "./components/PrivateRoute";
+import Adminroute from "./components/Adminroute"
+import Publicroute from "./components/Publicroute"
 import Box from "./components/Box";
 import Edit from "./pages/Edit";
 import Main from "./pages/Main";
@@ -23,16 +25,25 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Switch>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/reset" component={Reset} />
-          <Route exact path="/" component={Main} />
+
+        <Route exact path="/" component={Main} />
+
+          {/* Publicroute */}
+          <Publicroute exact path="/register" component={Register} />
+          <Publicroute exact path="/login" component={Login} />
+          <Publicroute exact path="/reset" component={Reset} />
+
+          {/* PrivateRoute */}
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/chat" component={Home} />
           <PrivateRoute exact path="/box" component={Box} />
           <PrivateRoute exact path="/edit" component={Edit} />
-          <PrivateRoute exact path="/allusers" component={Allusers} />
-          <PrivateRoute exact path="/two/:id" component={Two} />
+          {/* <PrivateRoute exact path="/allusers" component={Allusers} /> */}
+
+          {/* Only Admin access  */}
+          <Adminroute exact path="/two/:id" component={Two} />
+          <Adminroute exact path="/allusers" component={Allusers}/>
+          {/* <Adminroute exact path="/login" component={Login}/> */}
 
         </Switch>
       </BrowserRouter>
