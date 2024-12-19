@@ -5,6 +5,22 @@
     font-style: normal;
   } */
 
+  :root {
+    --color-1: hsla(0, 0%, 0%, 0.808);
+    --color-new1: #242526;
+    --color-2: white;
+    --color-3: #0084ff;
+    --color-4: rgb(96, 189, 146);
+    --color-new4: grey;
+    --color-5: #eb4034;
+    --color-6: #333;
+    --color-new6: #333;
+    --color-7: rgb(65, 65, 121);
+    --color-8: rgba(117, 153, 160, 0.915);
+    
+    
+  }
+  
 .main{
     background-color: transparent;
     width: 100vw;
@@ -39,6 +55,7 @@
     animation-delay:5s;
     transition: 12s;
 }
+
 @keyframes imgscroll {
     10%{
         
@@ -70,6 +87,149 @@
         transform: translate(-50%,-50%);
     }
 }
+
+.p1{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 20px;
+    width: 20px;
+    border: 2px solid var(--color-1);
+    border-radius: 50%;
+    background-color: var(--color-1);
+    box-shadow: 2px 2px 10px var(--color-1);
+    animation: colors 3s ease-in-out infinite alternate, spin 10s linear infinite;
+    transition: transform 0.5s ease-out, background-color 0.5s;
+    
+}
+
+
+
+.p2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 20px;
+    width: 20px;
+    border: 2px solid var(--color-1);
+    border-radius: 50%;
+    background-color: var(--color-2);
+    box-shadow: 2px 2px 10px var(--color-1);
+    animation: colors 5s ease-in-out infinite alternate, spin 10s linear infinite;
+    transition: transform 1s ease-in-out, background-color 0.5s;
+}
+
+@keyframes colors {
+    0% {
+        left: 10%;
+        top: 20%;
+        background-color: var(--color-3);
+        box-shadow: 1px 1px;
+        border-radius: 10px;
+    }
+    25% {
+        left: 70%;
+        top: 30%;
+        background-color: var(--color-7);
+    }
+    50% {
+        left: 50%;
+        top: 80%;
+        background-color: var(--color-5);
+        box-shadow: 2px 1px var(--color-4);
+        border-radius: 30px;
+    }
+    75% {
+        left: 20%;
+        top: 50%;
+        background-color: var(--color-4);
+    }
+    100% {
+        left: 10%;
+        top: 20%;
+        background-color: var(--color-2);
+        box-shadow: 1px 1px var(--color-8);
+        border-radius: 80px;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) scale(5);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(0.5);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .p2,.p1 {
+        height: 8vw;
+        width: 8vw;
+    }
+
+    @keyframes colors {
+        0% {
+            left: 15%;
+            top: 15%;
+        }
+        25% {
+            left: 75%;
+            top: 25%;
+        }
+        50% {
+            left: 50%;
+            top: 80%;
+        }
+        75% {
+            left: 25%;
+            top: 65%;
+        }
+        100% {
+            left: 15%;
+            top: 15%;
+        }
+    }
+}
+
+
+@media (max-width: 480px) {
+    .p2,.p1 {
+        height: 12vw;
+        width: 12vw;
+    }
+
+    @keyframes colors {
+        0% {
+            left: 20%;
+            top: 20%;
+        }
+        25% {
+            left: 70%;
+            top: 30%;
+        }
+        50% {
+            left: 40%;
+            top: 70%;
+        }
+        75% {
+            left: 30%;
+            top: 50%;
+        }
+        100% {
+            left: 20%;
+            top: 20%;
+        }
+    }
+}
+
+
 .mainh3{
     
     text-align: center;
@@ -166,6 +326,8 @@ marquee {
 .btn1:hover {
     background-color: #0056b3;
 }
+
+
 
 
 

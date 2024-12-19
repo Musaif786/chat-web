@@ -20,8 +20,10 @@ function Main() {
     <>
       <main className='main' >
         <div>
+          
           <div className='main-imgbox'>
-
+          <p className='p1'></p>
+          <p className='p2'></p>
             <img src={randomPhoto} alt="" />
           </div>
         </div>
