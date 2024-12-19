@@ -119,7 +119,7 @@ const Register = () => {
         </div>
       </form>
       <div className="login-with-gm-div">
-      <button style={{display:"block"}} onClick={signinwithGoogle} className="btn-sm ">Sign-in with Google</button>
+      <button style={{display:"block"}} onClick={signinwithGoogle} className="btn-sm ">Signin With Google</button>
         <p>Already have account ?  <Link to="/login">   Login</Link></p>
       </div>
     </section>

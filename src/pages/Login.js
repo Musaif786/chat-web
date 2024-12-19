@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase";
-import { updateDoc, doc } from "firebase/firestore";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, db, provider } from "../firebase";
+import { updateDoc ,setDoc, doc, Timestamp} from "firebase/firestore";
 import { useHistory, Link } from "react-router-dom";
+
 
 const Login = () => {
   const [data, setData] = useState({
@@ -43,6 +44,33 @@ const Login = () => {
       setData({ ...data, error: err.message, loading: false });
     }
   };
+  const signinwithGoogle = async ()=>{
+   
+    // signInWithPopup(auth , provider);
+    try {
+      const result = await signInWithPopup(auth , provider);
+      await setDoc(doc(db, "users", result.user.uid), {
+        uid: result.user.uid,
+        name:result.user.displayName,
+        email:auth.currentUser.email,
+        avatar:auth.currentUser.photoURL,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+
+        joined: "Through gmail",
+      });
+      // setData({
+      //   name: "",
+      //   email: "",
+      //   password: "",
+      //   error: null,
+      //   loading: false,
+      // });
+      history.replace("/chat");
+    } catch (err) {
+      setData({ ...data, error: err.message, loading: false });
+    } }
+
   return (
     <section>
       <h3>Log into your Account</h3>
@@ -75,6 +103,7 @@ const Login = () => {
       <div className="login-with-gm-div">
       <p>Forgot password ?  <Link to="/reset">Reset</Link> </p>
         <p>Don't have an account ?  <Link to="/register">   Create</Link></p>
+        <button style={{display:"block", marginTop:"5px"}} onClick={signinwithGoogle} className="btn-sm ">Login With Google</button>
       </div>
     </section>
   );
