@@ -29,7 +29,7 @@ function Main() {
         </div>
         <div className='main1'>
 
-          <h3 className='mainh3 typing-effect'>Being Together In Every Moment</h3>
+          <h3 className='mainh3 typing-effect'> <span className='b'>B</span>eing <span className='b'>T</span>ogether <span className='b'>I</span>n <span className='b'>E</span>very <span className='b'>M</span>oment</h3>
           <Chatbot />
           <p className="mainp ">
         The purpose of this website is to bring people together, enabling secure and seamless communication with friends and family. All conversations are end-to-end encrypted for complete privacy. Ready to connect? 

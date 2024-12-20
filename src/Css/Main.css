@@ -1,11 +1,10 @@
-
 /* .playwrite-au-vic-guides-regular {
     font-family: "Playwrite AU VIC Guides", serif;
     font-weight: 400;
     font-style: normal;
   } */
 
-  :root {
+:root {
     --color-1: hsla(0, 0%, 0%, 0.808);
     --color-new1: #242526;
     --color-2: white;
@@ -17,11 +16,11 @@
     --color-new6: #333;
     --color-7: rgb(65, 65, 121);
     --color-8: rgba(117, 153, 160, 0.915);
-    
-    
-  }
-  
-.main{
+
+
+}
+
+.main {
     background-color: transparent;
     width: 100vw;
     display: flex;
@@ -33,75 +32,90 @@
     font-weight: 400;
     font-style: normal;
     /* font-style: italic; */
-    
-}
-.main-imgbox{
-    height: 400px;
-    width: 100vw;
-    
     position: relative;
 
 }
-.main-imgbox img{
+
+.main-imgbox {
+    height: 400px;
+    width: 100vw;
+    position: relative;
+    /* position: relative;
+    background-image: url("../two.jpg");
+    
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    /* background-size: cover; 
+    background-position: center;
+    background-attachment: fixed;   */
+
+}
+
+.main-imgbox img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     height: 200px;
     width: 200px;
     border-radius: 10px;
     border-radius: 50%;
     animation: imgscroll 5s linear alternate-reverse infinite;
-    animation-delay:5s;
+    animation-delay: 5s;
     transition: 12s;
 }
 
 @keyframes imgscroll {
-    10%{
-        
+    10% {
+
         border-radius: 80%;
-        transform: translate(10%,-10%);
+        transform: translate(10%, -10%);
     }
-    20%{
+
+    20% {
         border-radius: 60%;
-        transform: translate(-20%,-20%);
+        transform: translate(-20%, -20%);
     }
-    30%{
+
+    30% {
         border-radius: 50%;
-        transform: translate(-40%,-40%);
+        transform: translate(-40%, -40%);
     }
-    50%{
+
+    50% {
         border-radius: 50%;
-        transform: translate(-40%,-80%);
+        transform: translate(-40%, -80%);
     }
-    50%{
+
+    50% {
         border-radius: 50%;
-        transform: translate(-90%,-5%);
+        transform: translate(-90%, -5%);
     }
-    70%{
+
+    70% {
         border-radius: 50%;
-        transform: translate(-80%,-80%);
+        transform: translate(-80%, -80%);
     }
-    100%{
+
+    100% {
         border-radius: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
     }
 }
 
-.p1{
+.p1 {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     height: 20px;
     width: 20px;
-    border: 2px solid var(--color-1);
+    border: 2px solid var(--color-3);
     border-radius: 50%;
-    background-color: var(--color-1);
-    box-shadow: 2px 2px 10px var(--color-1);
-    animation: colors 3s ease-in-out infinite alternate, spin 10s linear infinite;
+    background-color: var(--color-3);
+    box-shadow: 1px 2px 10px var(--color-3);
+    animation: colors 3s ease-in-out infinite alternate, imgscroll 5s linear alternate-reverse infinite, spin 10s linear infinite;
     transition: transform 0.5s ease-out, background-color 0.5s;
-    
+
 }
 
 
@@ -113,10 +127,10 @@
     transform: translate(-50%, -50%);
     height: 20px;
     width: 20px;
-    border: 2px solid var(--color-1);
+    border: 2px solid var(--color-new4);
     border-radius: 50%;
-    background-color: var(--color-2);
-    box-shadow: 2px 2px 10px var(--color-1);
+    background-color: var(--color-new4);
+    box-shadow: 1px 2px 10px var(--color-new4);
     animation: colors 5s ease-in-out infinite alternate, spin 10s linear infinite;
     transition: transform 1s ease-in-out, background-color 0.5s;
 }
@@ -129,11 +143,13 @@
         box-shadow: 1px 1px;
         border-radius: 10px;
     }
+
     25% {
         left: 70%;
         top: 30%;
         background-color: var(--color-7);
     }
+
     50% {
         left: 50%;
         top: 80%;
@@ -141,11 +157,13 @@
         box-shadow: 2px 1px var(--color-4);
         border-radius: 30px;
     }
+
     75% {
         left: 20%;
         top: 50%;
         background-color: var(--color-4);
     }
+
     100% {
         left: 10%;
         top: 20%;
@@ -159,100 +177,66 @@
     0% {
         transform: translate(-50%, -50%) rotate(0deg) scale(1);
     }
+
     50% {
-        transform: translate(-50%, -50%) rotate(180deg) scale(5);
+        transform: translate(-50%, -50%) rotate(180deg) scale(1.5);
     }
+
     100% {
-        transform: translate(-50%, -50%) rotate(360deg) scale(0.5);
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .p2,.p1 {
-        height: 8vw;
-        width: 8vw;
-    }
-
-    @keyframes colors {
-        0% {
-            left: 15%;
-            top: 15%;
-        }
-        25% {
-            left: 75%;
-            top: 25%;
-        }
-        50% {
-            left: 50%;
-            top: 80%;
-        }
-        75% {
-            left: 25%;
-            top: 65%;
-        }
-        100% {
-            left: 15%;
-            top: 15%;
-        }
+        transform: translate(-50%, -50%) rotate(360deg) scale(0);
     }
 }
 
 
-@media (max-width: 480px) {
-    .p2,.p1 {
-        height: 12vw;
-        width: 12vw;
-    }
 
-    @keyframes colors {
-        0% {
-            left: 20%;
-            top: 20%;
-        }
-        25% {
-            left: 70%;
-            top: 30%;
-        }
-        50% {
-            left: 40%;
-            top: 70%;
-        }
-        75% {
-            left: 30%;
-            top: 50%;
-        }
-        100% {
-            left: 20%;
-            top: 20%;
-        }
-    }
-}
+.mainh3 {
 
-
-.mainh3{
-    
     text-align: center;
     font-weight: 500;
     font-size: 22px;
 }
+.mainh3 span:nth-child(odd){
+    color: red;
+    background: linear-gradient(to right, rgb(25, 197, 126), rgb(20, 98, 200), yellow);
+    -webkit-background-clip: text; /* Clips the background to the text */
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: 1px;
+    
+    
+}
+.mainh3 span:nth-child(even){
+    /* color: blue; */
+    animation:spin 10s linear infinite;
+    background: linear-gradient(to right, red, orange, yellow);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: 1px;
+    
+    
+}
 hr {
-    border: none; /* Removes the default border */
-    height: 2px; /* Sets the thickness of the line */
-    background:  linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Sets the color of the line */
+    border: none;
+    /* Removes the default border */
+    height: 2px;
+    /* Sets the thickness of the line */
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    /* Sets the color of the line */
 }
 
-.mainp{
+.mainp {
     /* background-color: red; */
     text-align: center;
-    margin:10px 10px;
+    margin: 10px 10px;
     font-size: 18px;
     padding: 20px 50px;
     text-transform: capitalize;
     letter-spacing: 1px;
 
 }
-.btn1{
+
+.btn1 {
     padding: 2px 8px;
     border: none;
     background-color: transparent;
@@ -260,26 +244,36 @@ hr {
     border: 1px solid rgb(255, 255, 255);
     color: white;
     margin: 5px;
-    
+
 }
-.btn1 a{
-    font-weight: 500;
-    color: rgb(76, 177, 67);
+
+.btn1 a {
+    font-weight: 600;
+    color: rgb(126, 177, 67);
     letter-spacing: 2px;
     text-decoration: none;
 }
 
 marquee {
-    color: white; /* Text color */
-    background-color: #282c34; /* Background color */
-    font-size: 2vw; /* Font size adjusts based on viewport width */
-    font-weight: bold; /* Bold text */
-    padding: 5px 10px; /* Inner spacing with smaller padding for smaller screens */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-    display: block; /* Ensures full width */
-    margin: 10px 0; /* Adds spacing around the marquee */
-    
+    color: white;
+    /* Text color */
+    background-color: #282c34;
+    /* Background color */
+    font-size: 2vw;
+    /* Font size adjusts based on viewport width */
+    font-weight: bold;
+    /* Bold text */
+    padding: 5px 10px;
+    /* Inner spacing with smaller padding for smaller screens */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow */
+    display: block;
+    /* Ensures full width */
+    margin: 10px 0;
+    /* Adds spacing around the marquee */
+
 }
 
 
@@ -290,22 +284,27 @@ marquee {
     color: #ffffff;
     white-space: nowrap;
     margin: 5px;
-    overflow: hidden; /* Hides the text that is not visible */
-    border-right: 3px solid #333; /* Cursor effect */
-    width: 0; /* Starts at width 0 */
+    overflow: hidden;
+    /* Hides the text that is not visible */
+    border-right: 3px solid #333;
+    /* Cursor effect */
+    width: 0;
+    /* Starts at width 0 */
     animation: typing 5s steps(60) 1s forwards;
     line-height: 1.6;
     word-wrap: break-word;
     font-weight: 300;
-    
+
 }
 
 @keyframes typing {
     0% {
         width: 0;
     }
+
     100% {
-        width: 100%; /* Text will expand to full width */
+        width: 100%;
+        /* Text will expand to full width */
     }
 }
 
@@ -314,7 +313,7 @@ marquee {
 /* Styling for button */
 .btn1 {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1b95c2bd;
     color: white;
     border: none;
     border-radius: 8px;
@@ -332,34 +331,73 @@ marquee {
 
 
 /* Make text smaller on very small screens */
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .main {
+        background-color: transparent;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        font-family: "Playwrite AU VIC Guides", serif;
+        font-weight: 400;
+        font-style: normal;
+        /* font-style: italic; */
+        position: relative;
+        background-image: url("../six.webp");
+
+        background-repeat: no-repeat;
+        /* Prevents repeating the image */
+        background-size: cover;
+        /* Makes the image cover the entire container */
+        background-position: center;
+        /* Centers the image */
+        background-attachment: fixed;
+
+    }
+    .btn1 {
+        padding: 5px 10px;
+    background: none;
+border: 1px solid;
+}
+
+}
+
 @media (max-width: 600px) {
     marquee {
-        font-size: 3vw; 
-        padding: 4px; 
+        font-size: 3vw;
+        padding: 4px;
     }
+
     .typing-effect {
         font-size: 0.9rem;
         font-weight: 400;
         margin: 2px;
         padding: 2px;
     }
-    .mainp{
+
+    .mainp {
         font-size: 0.8rem;
         font-weight: 200;
     }
+
 }
 
 /* Make text larger on larger screens */
 @media (min-width: 1200px) {
     marquee {
-        font-size: 1.5vw; 
-        padding: 10px 15px; 
+        font-size: 1.5vw;
+        padding: 10px 15px;
     }
+
     .typing-effect {
         font-size: 1.3rem;
         font-weight: 600;
     }
-    .mainp{
+
+    .mainp {
         font-size: 1.2rem;
     }
+
 }
