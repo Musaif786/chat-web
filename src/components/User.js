@@ -6,13 +6,28 @@ import { db } from "../firebase";
 const User = ({ user1, user, selectUser, chat }) => {
   const user2 = user?.uid;
   const [data, setData] = useState("");
+  const [typings, setTypings] = useState({});
 
   useEffect(() => {
+
+
+        // Typing snapshot listener
+    const chatDocRef = doc(db, "users", user2);
+    const unsubscribeTyping = onSnapshot(chatDocRef, (docSnapshot) => {
+      if (docSnapshot.exists()) {
+        setTypings(docSnapshot.data()); // Update state with the latest data
+      }
+    });
+
+
+
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     let unsub = onSnapshot(doc(db, "lastMsg", id), (doc) => {
       setData(doc.data());
     });
-    return () => unsub();
+    return () => {unsub();
+      unsubscribeTyping();
+    };
   }, []);
 
   return (
@@ -32,7 +47,7 @@ const User = ({ user1, user, selectUser, chat }) => {
             {/* messages seen or not below code */}
             {data && (
           <p className="seen">
-            
+            <strong>{typings.isTyping ? ("typing..."):null}</strong>&nbsp;
             <strong>{data.unread === false ? "Seen" : null}</strong>
             
           </p>
@@ -64,6 +79,8 @@ const User = ({ user1, user, selectUser, chat }) => {
           className="avatar sm_screen"
         />
       </div>
+      
+
     </>
   );
 };

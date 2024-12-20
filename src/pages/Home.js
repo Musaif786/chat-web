@@ -13,6 +13,7 @@ import {
   doc,
   getDoc,
   updateDoc,
+  endAt,
 } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from "../components/User";
@@ -31,6 +32,7 @@ const Home = () => {
   const [img, setImg] = useState("");
   const [msgs, setMsgs] = useState([]);
   const [msgsid, setMsgsid] = useState([]);
+  const [typings, setTypings] = useState({});
 
   const location = useGeoLocation();
 
@@ -38,21 +40,65 @@ const Home = () => {
   const date = new Date();
 
   useEffect(() => {
+    // Users snapshot listener
     const usersRef = collection(db, "users");
-    // create query object
     const q = query(usersRef, where("uid", "not-in", [user1]));
-    // execute query
-    const unsub = onSnapshot(q, (querySnapshot) => {
+    const unsubscribeUsers = onSnapshot(q, (querySnapshot) => {
       let users = [];
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
       setUsers(users);
     });
-    return () => unsub();
+  
+    // Typing snapshot listener
+    const chatDocRef = doc(db, "users",  auth.currentUser.uid);
+    const unsubscribeTyping = onSnapshot(chatDocRef, (docSnapshot) => {
+      if (docSnapshot.exists()) {
+        setTypings(docSnapshot.data()); // Update state with the latest data
+      }
+    });
+  
+    // Cleanup both listeners on unmount
+    return () => {
+      unsubscribeUsers();
+      unsubscribeTyping();
+    };
+  }, []); // Empty dependency array to run once on mount
+  
 
-     
-  }, []);
+  
+
+  // starting typing
+
+  const typing = async () => {
+    await updateDoc(doc(db, "users", auth.currentUser.uid), {
+      isTyping: true,
+    });
+  };
+  
+  const nottyping = async () => {
+    await updateDoc(doc(db, "users", auth.currentUser.uid), {
+      isTyping: false,
+    });
+  };
+  
+  // Use useEffect to monitor changes in `text`
+  useEffect(() => {
+    if (text.length >= 1) {
+      typing();
+    } else {
+      nottyping();
+    }
+  
+    // Optional cleanup function to handle edge cases (e.g., unmount)
+    return () => {
+      nottyping();
+    };
+  }, [text]); // Listen to changes in the `text` variable
+  
+
+  // end typing
 
   const slidebar = ()=>{
     let side = document.querySelector(".home_container");
@@ -134,7 +180,7 @@ const Home = () => {
     setText("");
     setImg("");
   };
-  console.log(chat.lastseen)
+  console.log(text.length)
 
   // screen width
  const width =window.innerWidth ;
@@ -164,7 +210,7 @@ const Home = () => {
               {/* typing added */}
               {/* <p className="typing">{text>2 ? ("typing..."):("")}</p> */}
 
-              <p className="typing">{text<2 ? (""):("typing...")}</p>
+              <p className="typing">{typings.isTyping ? ("typing..."):null}</p>
               <div> 
               <div>
                 <Colors/>
@@ -203,6 +249,7 @@ const Home = () => {
               text={text}
               setText={setText}
               setImg={setImg}
+              chat={chat} //this mean user details
             />
           </>
         ) : (

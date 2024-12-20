@@ -20,7 +20,7 @@ const onSuccess = (location)=>{
   setLatitude( location.coords.latitude);
   setLongitude(location.coords.longitude);
 
-console.log(location)
+// console.log(location)//
    setLocation({
     
      loaded: true,  
