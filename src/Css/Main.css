@@ -233,6 +233,11 @@ hr {
     padding: 20px 50px;
     text-transform: capitalize;
     letter-spacing: 1px;
+    border: 5px solid transparent;
+    border-radius: 20px;
+    /* background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
+    background-clip: padding-box;
+    box-shadow: 2px 1px 3px 1px white;
 
 }
 
