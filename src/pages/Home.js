@@ -21,6 +21,7 @@ import Message from "../components/Message";
 import { toast } from "react-toastify";
 import Colors from "../components/Colors";
 import useGeoLocation from "../components/useGeoLocation";
+import "../Css/Home.css";
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState("");
   const [msgs, setMsgs] = useState([]);
+  const [msgsid, setMsgsid] = useState([]);
 
   const location = useGeoLocation();
 
@@ -71,8 +73,11 @@ const Home = () => {
       let msgs = [];
       querySnapshot.forEach((doc) => {
         msgs.push(doc.data());
+        // console.log(doc.id)
+        setMsgsid(doc.id)
       });
       setMsgs(msgs);
+      // console.log(doc.id)
     });
 
     // get last message b/w logged in user and selected user
@@ -129,6 +134,7 @@ const Home = () => {
     setText("");
     setImg("");
   };
+  console.log(chat.lastseen)
 
   // screen width
  const width =window.innerWidth ;
@@ -169,8 +175,11 @@ const Home = () => {
             className={`user_status1 ${chat.isOnline ? "online" : "offline"}`}
           ></div>
 
-           {chat.isOnline ? ("Online") :<Moment format='MMMM Do YYYY,'>{date}</Moment>}
-         
+           {/* {chat.isOnline ? ("Online") :<Moment format="MMMM Do ">{chat.lastseen}</Moment>} */}
+          
+           {/* {chat.isOnline ? ("Online") : chat.lastseen? <Moment fromNow>{chat.lastseen.toDate(new Date())}</Moment> : <Moment fromNow>{chat.createdAt.toDate(new Date())}</Moment> }
+            */}
+            {chat.isOnline ? ("Online") : chat.lastseen? <><div className="lastseen"><h6>Last seen</h6> <Moment fromNow className="moment">{chat.lastseen.toDate(new Date())}</Moment> </div> </> : null }
 
             
           {/* <div>
@@ -185,7 +194,7 @@ const Home = () => {
             <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
-                    <Message key={i} msg={msg} user1={user1} id={id} />
+                    <Message key={i} msg={msg} user1={user1} id={id} msgid={msgsid} />
                   ))
                 : null}
             </div>

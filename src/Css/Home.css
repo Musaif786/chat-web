@@ -1,0 +1,19 @@
+.lastseen{
+    /* background: red; */
+    position: relative;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    max-height: 20px;
+    padding: 0px 2px;
+    margin: 0px px;
+}
+.lastseen h6, .moment{
+    font-size: 12px;
+    /* background-color: blue; */
+    margin: 1px 5px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 1px;
+    
+}

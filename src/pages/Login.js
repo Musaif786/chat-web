@@ -56,6 +56,7 @@ const Login = () => {
         avatar:auth.currentUser.photoURL,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
+        lastseen: Timestamp.fromDate(new Date()),
 
         joined: "Through gmail",
       });

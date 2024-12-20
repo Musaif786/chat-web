@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { signOut } from "firebase/auth";
-import { updateDoc, doc } from "firebase/firestore";
+import { updateDoc, doc,Timestamp } from "firebase/firestore";
 import { AuthContext } from "../context/auth";
 import { useHistory } from "react-router-dom";
 import Darkmodebtn from "./Darkmodebtn";
@@ -25,6 +25,7 @@ const Navbar = () => {
   const handleSignout = async () => {
     await updateDoc(doc(db, "users", auth.currentUser.uid), {
       isOnline: false,
+      lastseen: Timestamp.fromDate(new Date()),
     });
     await signOut(auth);
     history.replace("/");
