@@ -240,7 +240,7 @@ const Home = () => {
             <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
-                    <Message key={i} msg={msg} user1={user1} id={id} msgid={msgsid} />
+                    <Message key={i} msg={msg} user1={user1} id={id} msgsid={msgsid} />
                   ))
                 : null}
             </div>
