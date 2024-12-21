@@ -180,7 +180,7 @@ const Home = () => {
     setText("");
     setImg("");
   };
-  console.log(text.length)
+  // console.log(text.length)
 
   // screen width
  const width =window.innerWidth ;

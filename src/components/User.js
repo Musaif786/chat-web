@@ -12,7 +12,7 @@ const User = ({ user1, user, selectUser, chat }) => {
 
 
         // Typing snapshot listener
-    const chatDocRef = doc(db, "users", user2);
+    const chatDocRef = doc(db, "users", user?.uid);
     const unsubscribeTyping = onSnapshot(chatDocRef, (docSnapshot) => {
       if (docSnapshot.exists()) {
         setTypings(docSnapshot.data()); // Update state with the latest data
@@ -47,8 +47,7 @@ const User = ({ user1, user, selectUser, chat }) => {
             {/* messages seen or not below code */}
             {data && (
           <p className="seen">
-            <strong>{typings.isTyping ? ("typing..."):null}</strong>&nbsp;
-            <strong>{data.unread === false ? "Seen" : null}</strong>
+            <strong>{typings.isTyping && data.unread === false? ("typing..."):data.unread === false ? "Seen" : null}</strong>&nbsp;
             
           </p>
         )}
