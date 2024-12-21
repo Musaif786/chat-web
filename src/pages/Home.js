@@ -39,7 +39,6 @@ const Home = () => {
   const user1 = auth.currentUser.uid;
   const date = new Date();
 
-
   useEffect(() => {
 
     // snapshot for to read and update in realtime
@@ -95,7 +94,6 @@ const Home = () => {
       isTyping: false,
     });
   };
-
 
 
   // end typing
