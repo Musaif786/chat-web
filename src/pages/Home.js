@@ -41,7 +41,7 @@ const Home = () => {
 
   useEffect(() => {
 
-    // snapshot for to read and update in realtime
+    // snapshot for to read and update in realtime data
     // Users snapshot listener
     const usersRef = collection(db, "users");
     const q = query(usersRef, where("uid", "not-in", [user1]));
