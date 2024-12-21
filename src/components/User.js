@@ -3,11 +3,11 @@ import Img from "../image1.jpg";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebase";
 
-const User = ({ user1, user, selectUser, chat }) => {
+const User = ({ user1, user, selectUser, chat ,setTypings,typings}) => {
   const user2 = user?.uid;
   const [data, setData] = useState("");
-  const [typings, setTypings] = useState({});
-
+  // const [typings, setTypings] = useState({});
+  // console.log(`Main user ${user2}`)
   useEffect(() => {
 
 
@@ -42,7 +42,7 @@ const User = ({ user1, user, selectUser, chat }) => {
             <img src={user.avatar || Img} alt="avatar" className="avatar" />
             <h4>{user.name}</h4>
             {data?.from !== user1 && data?.unread && (
-              <small className="unread">Msg</small>
+              <small className="unread">msg</small>
             )}
             {/* messages seen or not below code */}
             {data && (

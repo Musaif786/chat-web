@@ -39,7 +39,10 @@ const Home = () => {
   const user1 = auth.currentUser.uid;
   const date = new Date();
 
+
   useEffect(() => {
+
+    // snapshot for to read and update in realtime
     // Users snapshot listener
     const usersRef = collection(db, "users");
     const q = query(usersRef, where("uid", "not-in", [user1]));
@@ -51,20 +54,30 @@ const Home = () => {
       setUsers(users);
     });
   
-    // Typing snapshot listener
-    const chatDocRef = doc(db, "users",  auth.currentUser.uid);
-    const unsubscribeTyping = onSnapshot(chatDocRef, (docSnapshot) => {
-      if (docSnapshot.exists()) {
-        setTypings(docSnapshot.data()); // Update state with the latest data
-      }
-    });
+    // // Typing snapshot listener
+    // const chatDocRef = doc(db, "users",  auth.currentUser.uid);
+    // const unsubscribeTyping = onSnapshot(chatDocRef, (docSnapshot) => {
+    //   if (docSnapshot.exists()) {
+    //     setTypings(docSnapshot.data()); // Update state with the latest data
+    //   }
+    // });
+
+    if (text.length >= 1) {
+      typing();
+    } else {
+      nottyping();
+    }
+  
   
     // Cleanup both listeners on unmount
     return () => {
       unsubscribeUsers();
-      unsubscribeTyping();
+      nottyping();
+      // unsubscribeTyping();
     };
-  }, []); // Empty dependency array to run once on mount
+
+    //  monitor changes in `text`
+  }, [text]); // Empty dependency array to run once on mount
   
 
   
@@ -82,21 +95,8 @@ const Home = () => {
       isTyping: false,
     });
   };
-  
-  // Use useEffect to monitor changes in `text`
-  useEffect(() => {
-    if (text.length >= 1) {
-      typing();
-    } else {
-      nottyping();
-    }
-  
-    // Optional cleanup function to handle edge cases (e.g., unmount)
-    return () => {
-      nottyping();
-    };
-  }, [text]); // Listen to changes in the `text` variable
-  
+
+
 
   // end typing
 
@@ -195,6 +195,8 @@ const Home = () => {
             selectUser={selectUser}
             user1={user1}
             chat={chat}
+            setTypings={setTypings}
+            typings={typings}
           />
         ))}
       </div>
