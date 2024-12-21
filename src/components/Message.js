@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 
-const Message = ({ msg, user1 , id, msgid }) => {
+const Message = ({ msg, user1 , id, msgsid }) => {
   
   const scrollRef = useRef();
   const history = useHistory("");
@@ -43,13 +43,13 @@ const Message = ({ msg, user1 , id, msgid }) => {
 
       const onDelete = async () => {
         try {
-          const confirm = window.confirm("Do you want to delete this message?");
+          const confirm = window.confirm(`Do you want to delete this message? ${msg.text} msg id is ${msgsid}`);
           if (confirm) {
-            // Replace `db` with your Firestore instance and `id` with the specific document ID
+            //  Firestore instance and `id` with the specific document ID
             const messageRef = doc(
               db,
               `messages/${id}/chat`,
-              msgid // "mFvEvBgskb4lCs2pmUMf"
+              msgsid // "mFvEvBgskb4lCs2pmUMf"
             );
       
             await deleteDoc(messageRef); // Deletes the document
@@ -59,6 +59,12 @@ const Message = ({ msg, user1 , id, msgid }) => {
           console.error("Error deleting message: ", err.message);
         }
       };
+      
+      // console.log([msgsid])
+      // {msgsid.map((m) => (
+
+      //     console.log(m)
+      // ))}
   return (
     <div
       className={`message_wrapper ${msg.from === user1 ? "own" : ""}`}
@@ -77,6 +83,7 @@ const Message = ({ msg, user1 , id, msgid }) => {
         
           </small>
       </p>
+      
     </div>
   );
 };
