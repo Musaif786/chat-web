@@ -195,9 +195,10 @@ color: black;
 
 }
 .users_container {
-  margin-top: 10px;
+  margin-top: 5px;
   border-right: 2px solid var(--color-6);
   overflow-y: auto;
+  /* background-color: red; */
   
 }
 .user_wrapper {
@@ -259,10 +260,12 @@ color: black;
   width: 100%;
 }
 .messages_user {
-  
+  position: sticky;
   padding: 10px;
   text-align: center;
   border-bottom: 2px solid var(--color-6);
+  width: 100%;
+  /* background-color: red; */
 }
 .messages_user p{
   color: var(--color-4);

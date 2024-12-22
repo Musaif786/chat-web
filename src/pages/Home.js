@@ -264,7 +264,7 @@ const Home = () => {
         ) : (
           <>
           <h3 className="no_conv">Search a user to start the conversation</h3>
-          <div className="message_form" style={{ height:'100px',marginTop:'0px',paddingTop:'0px'}}>
+          <div className="user_searchbox" style={{ height:'100px',marginTop:'0px',paddingTop:'0px'}}>
           <input 
         type="text"
         placeholder="example: musaif"
