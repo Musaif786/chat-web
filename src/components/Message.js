@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 
-const Message = ({ msg, user1 , id, msgsid }) => {
+const Message = ({ msg, user1 , id, msgsid ,chat}) => {
   
   const scrollRef = useRef();
   const history = useHistory("");
@@ -74,6 +74,7 @@ const Message = ({ msg, user1 , id, msgsid }) => {
         {msg.media ? <img style={{maxHeigt:"200px", maxWidth:"200px"}} src={msg.media} alt={msg.text} /> : null}
         {/* {msg.text} */}
         
+        <div className="username">{msg.from !== user1 ? chat.name : "You"}:</div>
         {msg.text && msg.text.charAt(5) == ":" || msg.text.charAt(4) == ":" ? (<a className="msg-link" href={ msg.text } target="_blank">[ link... ]</a>): msg.text }
         
         <br />

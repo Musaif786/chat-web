@@ -3,7 +3,7 @@ import Img from "../image1.jpg";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebase";
 
-const User = ({ user1, user, selectUser, chat ,setTypings,typings}) => {
+const User = ({ user1, user, selectUser, chat ,setTypings,typings,search}) => {
   const user2 = user?.uid;
   const [data, setData] = useState("");
   // const [typings, setTypings] = useState({});
@@ -32,6 +32,8 @@ const User = ({ user1, user, selectUser, chat ,setTypings,typings}) => {
 
   return (
     <>
+     
+     { search ? <>
       <div
         className={`user_wrapper ${chat.name === user.name && "selected_user"}`}
         onClick={() => selectUser(user)}
@@ -68,6 +70,8 @@ const User = ({ user1, user, selectUser, chat ,setTypings,typings}) => {
           </p>
         )}
       </div>
+      
+      
       <div
         onClick={() => selectUser(user)}
         className={`sm_container ${chat.name === user.name && "selected_user"}`}
@@ -78,8 +82,8 @@ const User = ({ user1, user, selectUser, chat ,setTypings,typings}) => {
           className="avatar sm_screen"
         />
       </div>
-      
-
+      </>
+    : null}
     </>
   );
 };

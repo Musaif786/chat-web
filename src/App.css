@@ -323,23 +323,40 @@ color: black;
   display: inline-block;
   max-width: 50%;
   text-align: left;
-  border-radius: 5px;
+  /* border-radius: 0px 15px 20px 15px; */
+  
   
 }
 .message_wrapper small {
   display: inline-block;
   margin-top: 15px;
   opacity: 0.8;
+
 }
 .message_wrapper.own {
   text-align: right;
+  
 }
 .me {
-  background: var(--color-3);
+  background: rgb(79, 148, 81);
   color: white;
+  /* background-color: red; */
+  border-radius: 15px 1px 15px 20px; 
+  border: none;
+  
 }
 .friend {
-  background: var(--color-1);
+  background: rgb(122, 120, 120);
+  /* background-color: blue; */
+  border-radius: 0px 15px 20px 15px; 
+  
+}
+.message_wrapper .username{
+  font-size: 10px;
+  /* background-color: rebeccapurple; */
+  margin: 0px;
+  text-align: left;
+  
 }
 .selected_user {
   background: var(--color-6);
