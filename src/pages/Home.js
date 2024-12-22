@@ -33,6 +33,13 @@ const Home = () => {
   const [msgs, setMsgs] = useState([]);
   const [msgsid, setMsgsid] = useState([]);
   const [typings, setTypings] = useState({});
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e) => setSearch(e.target.value.toLowerCase());
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(search)
+  );
+
 
   const location = useGeoLocation();
 
@@ -186,7 +193,8 @@ const Home = () => {
     <div className="home_container">
     
       <div className="users_container">
-        {users.map((user) => (
+        {/* pahle filteredUsers ke jaga users tha usko replace karke maine filteredUsers likha */}
+        {filteredUsers.map((user) => (
           <User
             key={user.uid}
             user={user}
@@ -195,6 +203,7 @@ const Home = () => {
             chat={chat}
             setTypings={setTypings}
             typings={typings}
+            search={search}
           />
         ))}
       </div>
@@ -240,7 +249,7 @@ const Home = () => {
             <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
-                    <Message key={i} msg={msg} user1={user1} id={id} msgsid={msgsid} />
+                    <Message key={i} msg={msg} user1={user1} id={id} msgsid={msgsid} chat={chat}/>
                   ))
                 : null}
             </div>
@@ -253,7 +262,19 @@ const Home = () => {
             />
           </>
         ) : (
-          <h3 className="no_conv">Select a user to start the conversation</h3>
+          <>
+          <h3 className="no_conv">Search a user to start the conversation</h3>
+          <div className="message_form" style={{ height:'100px',marginTop:'0px',paddingTop:'0px'}}>
+          <input 
+        type="text"
+        placeholder="example: musaif"
+        value={search}
+        onChange={handleSearch}
+        className="search-bar"
+      />
+      </div>
+        </>
+        
         )}
       </div>
     </div>
