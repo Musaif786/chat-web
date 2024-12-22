@@ -75,8 +75,16 @@ const Message = ({ msg, user1 , id, msgsid ,chat}) => {
         {/* {msg.text} */}
         
         <div className="username">{msg.from !== user1 ? chat.name : "You"}:</div>
-        {msg.text && msg.text.charAt(5) == ":" || msg.text.charAt(4) == ":" ? (<a className="msg-link" href={ msg.text } target="_blank">[ link... ]</a>): msg.text }
-        
+        {/* { msg.text.startsWith("http") ? (<a className="msg-link" href={ msg.text } target="_blank">[ link... ]</a>): msg.text } */}
+        {msg.text && 
+  (msg.text.includes("http") && /\.(com|in|net|org|edu|gov|io|co|uk|app)|(\/)$/.test(msg.text)) ? (
+    <a className="msg-link" href={msg.text} target="_blank">
+     {msg.text}
+    </a>
+  ) : (
+    msg.text
+  )}
+
         <br />
         <small>
           <Moment fromNow>{msg.createdAt.toDate()}</Moment>
