@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 import Colors from "../components/Colors";
 import useGeoLocation from "../components/useGeoLocation";
 import "../Css/Home.css";
+import Searchuser from "../components/Searchuser";
 
 
 const Home = () => {
@@ -194,6 +195,7 @@ const Home = () => {
     
       <div className="users_container">
         {/* pahle filteredUsers ke jaga users tha usko replace karke maine filteredUsers likha */}
+        {/* {id} */}
         {filteredUsers.map((user) => (
           <User
             key={user.uid}
@@ -204,8 +206,14 @@ const Home = () => {
             setTypings={setTypings}
             typings={typings}
             search={search}
+            handleSearch={handleSearch} 
           />
         ))}
+        {/* {user1} */}
+
+        {/* left side search box */}
+        {chat?
+        <Searchuser handleSearch={handleSearch} search={search} />: null}
       </div>
       <div className="messages_container">
         {chat ? (
@@ -263,16 +271,9 @@ const Home = () => {
           </>
         ) : (
           <>
-          <h3 className="no_conv">Search a user to start the conversation</h3>
-          <div className="user_searchbox" style={{ height:'100px',marginTop:'0px',paddingTop:'0px'}}>
-          <input 
-        type="text"
-        placeholder="example: musaif"
-        value={search}
-        onChange={handleSearch}
-        className="search-bar"
-      />
-      </div>
+        
+          {/* //Main and first search box */}
+      <Searchuser handleSearch={handleSearch} search={search} />
         </>
         
         )}
