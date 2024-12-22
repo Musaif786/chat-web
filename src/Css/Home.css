@@ -35,3 +35,44 @@
     border-radius: 6px;
     border: 1px solid green;
 }
+
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .user_searchbox input{
+        height: 30px;
+        width: 60%;
+
+    }
+    .no_conv{
+        font-size: 14px;
+    }
+    
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .user_searchbox input{
+        height: 30px;
+        width: 80%;
+
+    }
+    .no_conv{
+        font-size: 18px;
+    }
+    
+
+}
+
+
+/* Make text larger on larger screens */
+@media (min-width: 1200px) {
+    .user_searchbox input{
+        height: 30px;
+        width: 80%;
+
+    }
+    .no_conv{
+        font-size: 28px;
+    }
+
+}
