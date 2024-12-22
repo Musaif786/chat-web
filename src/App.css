@@ -260,11 +260,11 @@ color: black;
   width: 100%;
 }
 .messages_user {
-  position: sticky;
+  position: fixed;
   padding: 10px;
   text-align: center;
   border-bottom: 2px solid var(--color-6);
-  width: 100%;
+  width: 75%;
   /* background-color: red; */
 }
 .messages_user p{
