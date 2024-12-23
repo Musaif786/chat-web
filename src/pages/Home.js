@@ -13,6 +13,7 @@ import {
   doc,
   getDoc,
   updateDoc,
+  arrayUnion,
   endAt,
 } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
@@ -24,6 +25,7 @@ import Colors from "../components/Colors";
 import useGeoLocation from "../components/useGeoLocation";
 import "../Css/Home.css";
 import Searchuser from "../components/Searchuser";
+import { Followusers } from "../components/Followusers";
 
 
 const Home = () => {
@@ -60,7 +62,7 @@ const Home = () => {
       });
       setUsers(users);
     });
-  
+
     // // Typing snapshot listener
     // const chatDocRef = doc(db, "users",  auth.currentUser.uid);
     // const unsubscribeTyping = onSnapshot(chatDocRef, (docSnapshot) => {
@@ -74,8 +76,8 @@ const Home = () => {
     } else {
       nottyping();
     }
-  
-  
+
+
     // Cleanup both listeners on unmount
     return () => {
       unsubscribeUsers();
@@ -85,9 +87,9 @@ const Home = () => {
 
     //  monitor changes in `text`
   }, [text]); // Empty dependency array to run once on mount
-  
 
-  
+
+
 
   // starting typing
 
@@ -96,7 +98,7 @@ const Home = () => {
       isTyping: true,
     });
   };
-  
+
   const nottyping = async () => {
     await updateDoc(doc(db, "users", auth.currentUser.uid), {
       isTyping: false,
@@ -106,11 +108,21 @@ const Home = () => {
 
   // end typing
 
-  const slidebar = ()=>{
+  const slidebar = () => {
     let side = document.querySelector(".home_container");
-      side.classList.toggle("openbar");
- }
+    side.classList.toggle("openbar");
+  }
+  const hidesearchbutton = () => {
+    let side = document.querySelector(".hidesearchbtn");
+    side.classList.toggle("unhidesearchbtn");
+    // side.classList.toggle("changeiconsearchbtn");
 
+    let side1 = document.querySelector(".searchicon");
+    side1.classList.toggle("searchiconhide");
+
+    let side2 = document.querySelector(".expandicon");
+    side2.classList.toggle("expandiconunhide");
+  }
 
   const selectUser = async (user) => {
     setChat(user);
@@ -140,11 +152,11 @@ const Home = () => {
       await updateDoc(doc(db, "lastMsg", id), { unread: false });
     }
   };
-//saving to message 
+  //saving to message 
   const user2 = chat.uid;
 
   const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
- //
+  //
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -163,39 +175,64 @@ const Home = () => {
       url = dlUrl;
     }
 
-    if(!text){
+    if (!text) {
       console.log("invalid msg")
-    }else{
-    await addDoc(collection(db, "messages", id, "chat"), {
-      text,
-      from: user1,
-      to: user2,
-      createdAt: Timestamp.fromDate(new Date()),
-      media: url || "",
-    });
+    } else {
+      await addDoc(collection(db, "messages", id, "chat"), {
+        text,
+        from: user1,
+        to: user2,
+        createdAt: Timestamp.fromDate(new Date()),
+        media: url || "",
+      });
 
-    await setDoc(doc(db, "lastMsg", id), {
-      text,
-      from: user1,
-      to: user2,
-      createdAt: Timestamp.fromDate(new Date()),
-      media: url || "",
-      unread: true,
-    });
-  }
+      await setDoc(doc(db, "lastMsg", id), {
+        text,
+        from: user1,
+        to: user2,
+        createdAt: Timestamp.fromDate(new Date()),
+        media: url || "",
+        unread: true,
+      });
+      await updateDoc(doc(db, "users", auth.currentUser.uid), {
+        usersid: arrayUnion(id)
+      });
+    }
     setText("");
     setImg("");
   };
   // console.log(text.length)
 
   // screen width
- const width =window.innerWidth ;
+  const width = window.innerWidth;
   return (
     <div className="home_container">
-    
+
       <div className="users_container">
         {/* pahle filteredUsers ke jaga users tha usko replace karke maine filteredUsers likha */}
         {/* {id} */}
+        {/* {user1} */}
+
+        {/* left side search box */}
+        {chat ?
+
+          <div className="search_togglecls">
+            <div className="searchbtniconbox">
+              <button title="click to hide search button" id="hidesearchbutton" onClick={hidesearchbutton}>
+                <i className="fa fa-expand searchicon" aria-hidden="true"> Hide Search </i>
+                <i className="fa fa-search expandicon" aria-hidden="true"> Find Friends</i>
+
+              </button>
+
+              {/* <p className="compressicon"> Expand to find friends</p> */}
+
+            </div>
+            <div className="hidesearchbtn">
+              <Searchuser handleSearch={handleSearch} search={search} />
+            </div>
+          </div>
+          : null}
+
         {filteredUsers.map((user) => (
           <User
             key={user.uid}
@@ -206,16 +243,25 @@ const Home = () => {
             setTypings={setTypings}
             typings={typings}
             search={search}
-            handleSearch={handleSearch} 
+            handleSearch={handleSearch}
           />
         ))}
-        {/* {user1} */}
 
-        {/* left side search box */}
-        {chat?
-        <Searchuser handleSearch={handleSearch} search={search} />: null}
+        {users.map((user) =>
+        (<Followusers
+          user={user}
+          selectUser={selectUser}
+          user1={user1}
+          chat={chat}
+
+        />))}
+
+
+
       </div>
       <div className="messages_container">
+
+
         {chat ? (
           <>
             <div className="messages_user">
@@ -223,42 +269,42 @@ const Home = () => {
               {/* {width} */}
               {/* sidebar to hide the users list */}
               <button title="double tap to hide users list" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-</button>
+              </button>
               {/* typing added */}
               {/* <p className="typing">{text>2 ? ("typing..."):("")}</p> */}
 
-              <p className="typing">{typings.isTyping ? ("typing..."):null}</p>
-              <div> 
+              <p className="typing">{typings.isTyping ? ("typing...") : null}</p>
               <div>
-                <Colors/>
-              </div>
-              
+                <div>
+                  <Colors />
+                </div>
 
-          <div
-            className={`user_status1 ${chat.isOnline ? "online" : "offline"}`}
-          ></div>
 
-           {/* {chat.isOnline ? ("Online") :<Moment format="MMMM Do ">{chat.lastseen}</Moment>} */}
-          
-           {/* {chat.isOnline ? ("Online") : chat.lastseen? <Moment fromNow>{chat.lastseen.toDate(new Date())}</Moment> : <Moment fromNow>{chat.createdAt.toDate(new Date())}</Moment> }
+                <div
+                  className={`user_status1 ${chat.isOnline ? "online" : "offline"}`}
+                ></div>
+
+                {/* {chat.isOnline ? ("Online") :<Moment format="MMMM Do ">{chat.lastseen}</Moment>} */}
+
+                {/* {chat.isOnline ? ("Online") : chat.lastseen? <Moment fromNow>{chat.lastseen.toDate(new Date())}</Moment> : <Moment fromNow>{chat.createdAt.toDate(new Date())}</Moment> }
             */}
-            {chat.isOnline ? ("Online") : chat.lastseen? <><div className="lastseen"><h6>Last seen</h6> <Moment fromNow className="moment">{chat.lastseen.toDate(new Date())}</Moment> </div> </> : null }
+                {chat.isOnline ? ("Online") : chat.lastseen ? <><div className="lastseen"><h6>Last seen</h6> <Moment fromNow className="moment">{chat.lastseen.toDate(new Date())}</Moment> </div> </> : null}
 
-            
-          {/* <div>
+
+                {/* <div>
           i tried to create a online and offline time but not possible not working
           <Moment fromNow>{chat.createdAt.toDate(new Date())}</Moment>
 
           </div> */}
-          {/* <Moment fromNow={chat.createdAt.toDate()}></Moment> */}
-        
-        </div>
+                {/* <Moment fromNow={chat.createdAt.toDate()}></Moment> */}
+
+              </div>
             </div>
             <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
-                    <Message key={i} msg={msg} user1={user1} id={id} msgsid={msgsid} chat={chat}/>
-                  ))
+                  <Message key={i} msg={msg} user1={user1} id={id} msgsid={msgsid} chat={chat} />
+                ))
                 : null}
             </div>
             <MessageForm
@@ -271,11 +317,12 @@ const Home = () => {
           </>
         ) : (
           <>
-        
-          {/* //Main and first search box */}
-      <Searchuser handleSearch={handleSearch} search={search} />
-        </>
-        
+
+            {/* //Main and first search box */}
+            <Searchuser handleSearch={handleSearch} search={search} />
+            {/* <Followusers user1={user1} users={users} id={id}/> */}
+          </>
+
         )}
       </div>
     </div>
