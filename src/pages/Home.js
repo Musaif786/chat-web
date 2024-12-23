@@ -126,6 +126,7 @@ const Home = () => {
 
   const selectUser = async (user) => {
     setChat(user);
+    setSearch("")
 
     const user2 = user.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
@@ -219,8 +220,8 @@ const Home = () => {
           <div className="search_togglecls">
             <div className="searchbtniconbox">
               <button title="click to hide search button" id="hidesearchbutton" onClick={hidesearchbutton}>
-                <i className="fa fa-expand searchicon" aria-hidden="true"> Hide Search </i>
-                <i className="fa fa-search expandicon" aria-hidden="true"> Find Friends</i>
+                <i className="fa fa-expand expandicon" aria-hidden="true"> Hide Search </i>
+                <i className="fa fa-search searchicon" aria-hidden="true"> Find Friends</i>
 
               </button>
 
@@ -268,7 +269,7 @@ const Home = () => {
               <h3>{chat.name}</h3>
               {/* {width} */}
               {/* sidebar to hide the users list */}
-              <button title="double tap to hide users list" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+              <button title="click to expand screen" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
               </button>
               {/* typing added */}
               {/* <p className="typing">{text>2 ? ("typing..."):("")}</p> */}
