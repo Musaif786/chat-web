@@ -30,7 +30,7 @@ import { Followusers } from "../components/Followusers";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
-  const [chat, setChat] = useState("");
+  const [chat, setChat] = useState(""); // chat means users data already user there so created with chat name
   const [text, setText] = useState("");
   const [img, setImg] = useState("");
   const [msgs, setMsgs] = useState([]);
