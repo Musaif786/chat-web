@@ -137,7 +137,8 @@ const Home = () => {
     onSnapshot(q, (querySnapshot) => {
       let msgs = [];
       querySnapshot.forEach((doc) => {
-        msgs.push(doc.data());
+        // msgs.push(doc.data());
+        msgs.push({ id: doc.id, ...doc.data() });
         // console.log(doc.id)
         setMsgsid(doc.id)
       });
@@ -304,7 +305,7 @@ const Home = () => {
             <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
-                  <Message key={i} msg={msg} user1={user1} id={id} msgsid={msgsid} chat={chat} />
+                  <Message key={i} msg={msg} user1={user1} id={id} msgsid={msgsid} chat={chat} selectUser={selectUser} />
                 ))
                 : null}
             </div>

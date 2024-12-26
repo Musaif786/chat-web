@@ -43,13 +43,14 @@ const Message = ({ msg, user1 , id, msgsid ,chat}) => {
 
       const onDelete = async () => {
         try {
-          const confirm = window.confirm(`Do you want to delete this message? ${msg.text} msg id is ${msgsid}`);
+          // const confirm = window.confirm(`Do you want to delete this message? ${msg.text} msg id is ${msg.id}`);
+          const confirm = window.confirm(`Do you want to delete this '${msg.text}' message?`);
           if (confirm) {
             //  Firestore instance and `id` with the specific document ID
             const messageRef = doc(
               db,
               `messages/${id}/chat`,
-              msgsid // "mFvEvBgskb4lCs2pmUMf"
+              msg.id // "mFvEvBgskb4lCs2pmUMf"
             );
       
             await deleteDoc(messageRef); // Deletes the document
