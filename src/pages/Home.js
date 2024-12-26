@@ -37,6 +37,7 @@ const Home = () => {
   const [msgsid, setMsgsid] = useState([]);
   const [typings, setTypings] = useState({});
   const [search, setSearch] = useState("");
+  const [datas, setDatas] = useState("");
 
   const handleSearch = (e) => setSearch(e.target.value.toLowerCase());
   const filteredUsers = users.filter((user) =>
@@ -246,6 +247,8 @@ const Home = () => {
             typings={typings}
             search={search}
             handleSearch={handleSearch}
+            setData={setDatas}
+            data={datas}
           />
         ))}
 
@@ -255,6 +258,7 @@ const Home = () => {
           selectUser={selectUser}
           user1={user1}
           chat={chat}
+          datas={datas}
 
         />))}
 

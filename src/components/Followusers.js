@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { db, auth, storage } from "../firebase";
-import { collection, query, orderBy, onSnapshot, doc, getDoc } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, doc, getDoc,datas } from "firebase/firestore";
 import Img from "../image1.jpg";
 
-export const Followusers = ({ users, id, user1, user, selectUser, chat, setTypings, typings, search }) => {
+export const Followusers = ({ users, id, user1, user, selectUser, chat, setTypings, typings, search, datas }) => {
   const [usersid, setUsersid] = useState(null);
-  const [data, setData] = useState("");
+  // const [data, setData] = useState("");
 
   useEffect(() => {
     const docRef = doc(db, "users", auth.currentUser.uid);
@@ -49,16 +49,16 @@ export const Followusers = ({ users, id, user1, user, selectUser, chat, setTypin
           <div className="user_detail">
             <img src={user.avatar || Img} alt="avatar" className="avatar" />
             <h4>{user.name}</h4>
-            {data?.from !== user1 && data?.unread && (
+            {datas?.from === user.uid && datas?.unread && (
               <small className="unread">msg</small>
             )}
-            {/* messages seen or not below code */}
-            {data && (
+          
+            {/* {data && (
           <p className="seen">
             <strong>{typings.isTyping && data.unread === false? ("typing..."):data.unread === false ? "Seen" : null}</strong>&nbsp;
             
           </p>
-        )}
+        )} */}
         
             
           </div>

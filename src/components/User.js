@@ -3,9 +3,9 @@ import Img from "../image1.jpg";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebase";
 
-const User = ({ user1, user, selectUser, chat ,setTypings,typings,search}) => {
+const User = ({ user1, user,data,setData, selectUser, chat ,setTypings,typings,search}) => {
   const user2 = user?.uid;
-  const [data, setData] = useState("");
+  // const [data, setData] = useState("");
   // const [typings, setTypings] = useState({});
   // console.log(`Main user ${user2}`)
   useEffect(() => {
