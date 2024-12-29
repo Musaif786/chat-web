@@ -325,6 +325,7 @@ color: black;
   display: inline-block;
   max-width: 50%;
   text-align: left;
+  /* background-color: red; */
   /* border-radius: 0px 15px 20px 15px; */
   
   
@@ -333,10 +334,12 @@ color: black;
   display: inline-block;
   margin-top: 15px;
   opacity: 0.8;
+  
 
 }
 .message_wrapper.own {
   text-align: right;
+  
   
 }
 .me {
@@ -346,11 +349,13 @@ color: black;
   border-radius: 15px 1px 15px 20px; 
   border: none;
   
+  
 }
 .friend {
   background: rgb(122, 120, 120);
   /* background-color: blue; */
   border-radius: 0px 15px 20px 15px; 
+  
   
 }
 .message_wrapper .username{
