@@ -134,8 +134,8 @@ const VideoCall = () => {
       {/* <video ref={myStreamRef} autoPlay playsInline muted style={{ width: '45%', marginRight: '10px' }} />
       <video ref={otherStreamRef} autoPlay playsInline style={{ width: '45%' }} /> */}
 
-<video ref={myStreamRef} autoPlay playsInline muted={isMuted} style={{ width: '45%', marginRight: '10px' }} />
-      <video ref={otherStreamRef} autoPlay playsInline style={{ width: '45%' }} />
+<video ref={myStreamRef} autoPlay playsInline muted={isMuted} style={{ width: '45%', height:'20',maxWidth:'40%', marginRight: '5px' }} />
+      <video ref={otherStreamRef} autoPlay playsInline style={{ width: '45%',maxHeight:'40%',maxWidth:'40%'}} />
       
       
       {isStreamStarted &&
@@ -147,14 +147,17 @@ const VideoCall = () => {
 
 
       {!isCallStarted && (
-        <div style={{ marginTop: '20px' }}>
+        <div className="user_searchbox12" style={{ marginTop: '20px' }}>
           <button className='btn' onClick={startStream}>Start Stream</button>
-          <input
+          <input 
             type="text"
             placeholder="Enter Peer ID"
             value={otherPeerId}
             onChange={(e) => setOtherPeerId(e.target.value)}
-            style={{ marginLeft: '10px', marginRight: '10px' }}
+            style={{ marginLeft: '10px', marginRight: '10px' , maxWidth:'40%', height: '30px',
+              width: '60vw',
+              borderRadius: '6px',
+              border: '1px solid green'}}
           />
           <button className='btn' onClick={handleStartCall}>Start Call</button>
         </div>
