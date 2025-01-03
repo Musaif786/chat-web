@@ -112,9 +112,9 @@
 }
 .messages_user a i{
     position: absolute;
-left: 5px;
-top: 8px;
-font-size: 15px;
+left: 20px;
+top: 6px;
+font-size: 20px;
 }
 
 @media screen and (min-width: 300px) and (max-width: 768px) {

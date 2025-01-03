@@ -277,7 +277,7 @@ const Home = () => {
               {/* sidebar to hide the users list */}
               <button title="click to expand screen" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
               </button>
-              <Link to="/box"><i class="fa fa-video-camera" aria-hidden="true"> Video Call </i> </Link>
+              <Link to="/box"><i class="fa fa-video-camera" aria-hidden="true"></i> </Link>
               
               {/* typing added */}
               {/* <p className="typing">{text>2 ? ("typing..."):("")}</p> */}
