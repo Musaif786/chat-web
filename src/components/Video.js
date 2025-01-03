@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Peer from 'simple-peer';
-import { db } from "../firebase"; // Ensure correct Firebase config
+import { db , auth} from "../firebase"; // Ensure correct Firebase config
 import { collection, doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
 
 const VideoCall = () => {
@@ -10,7 +10,8 @@ const VideoCall = () => {
   const [otherPeerId, setOtherPeerId] = useState('');
   const myStreamRef = useRef(null);
   const otherStreamRef = useRef(null);
-  const myId = useRef(Math.random().toString(36).substring(2, 5).toLowerCase()); // Short Random ID
+  // const myId = useRef(Math.random().toString(36).substring(2, 5).toLowerCase()); // Short Random ID
+  const myId = useRef(auth.currentUser.uid.substring(2, 5).toLowerCase());
   const [isMuted, setIsMuted] = useState(true);
   const [isVideoOff, setIsVideoOff] = useState(false);
   const [isStreamStarted, setIsStreamStarted] = useState(false);
