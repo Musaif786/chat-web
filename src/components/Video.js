@@ -10,15 +10,15 @@ const VideoCall = () => {
   const [otherPeerId, setOtherPeerId] = useState('');
   const myStreamRef = useRef(null);
   const otherStreamRef = useRef(null);
-  const signalingChannel = useRef(null);
   const myId = useRef(Math.random().toString(36).substring(2, 5)); // Short Random ID
   const [isMuted, setIsMuted] = useState(true);
   const [isVideoOff, setIsVideoOff] = useState(false);
   const [isStreamStarted, setIsStreamStarted] = useState(false);
+  const [incomingOffer, setIncomingOffer] = useState(null); 
   const signalingCollection = collection(db, "signaling"); // Firestore collection for signaling
 
   const toggleMute = () => {
-    if (myStreamRef.current?.srcObject) {
+    if (myStreamRef.current && myStreamRef.current.srcObject) {
       const audioTracks = myStreamRef.current.srcObject.getAudioTracks();
       if (audioTracks.length > 0) {
         audioTracks[0].enabled = !isMuted;
@@ -28,7 +28,7 @@ const VideoCall = () => {
   };
 
   const toggleVideo = () => {
-    if (myStreamRef.current?.srcObject) {
+    if (myStreamRef.current && myStreamRef.current.srcObject) {
       const videoTracks = myStreamRef.current.srcObject.getVideoTracks();
       if (videoTracks.length > 0) {
         videoTracks[0].enabled = !isVideoOff;
@@ -43,20 +43,7 @@ const VideoCall = () => {
         const { senderId, data } = docSnapshot.data();
 
         if (data.type === 'offer') {
-          setIsReceivingCall(true);
-
-          const newPeer = new Peer({
-            initiator: false,
-            stream: myStreamRef.current?.srcObject,
-            trickle: false,
-            config: {
-              iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
-            },
-          });
-
-          setUpPeerListeners(newPeer, senderId);
-          setPeer(newPeer);
-          newPeer.signal(data);
+          handleIncomingOffer({ senderId, data });
         } else if (data.type === 'answer' || data.candidate) {
           peer?.signal(data);
         }
@@ -65,6 +52,22 @@ const VideoCall = () => {
 
     return () => unsubscribe();
   }, [peer]);
+
+  const handleIncomingOffer = ({ senderId, data }) => {
+    setIsReceivingCall(true);
+    setIncomingOffer({ senderId, data });
+
+    const newPeer = new Peer({
+      initiator: false,
+      stream: myStreamRef.current?.srcObject,
+      trickle: false,
+      config: { iceServers: [{ urls: ['stun:stun.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] }] },
+    });
+
+    setUpPeerListeners(newPeer, senderId);
+    setPeer(newPeer);
+    newPeer.signal(data);
+  };
 
   const startStream = async () => {
     try {
@@ -77,15 +80,13 @@ const VideoCall = () => {
   };
 
   const createPeer = (initiator) => {
+    if (peer) return;
+
     const newPeer = new Peer({
       initiator,
       stream: myStreamRef.current?.srcObject,
       trickle: false,
-      config: {
-        iceServers: [
-          { urls: ['stun:stun.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] },
-        ],
-      },
+      config: { iceServers: [{ urls: ['stun:stun.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] }] },
     });
 
     setUpPeerListeners(newPeer, otherPeerId);
@@ -93,71 +94,67 @@ const VideoCall = () => {
   };
 
   const sendSignal = async (data, targetId) => {
-    try {
-      const signalingDoc = doc(signalingCollection, targetId);
-      await setDoc(signalingDoc, {
-        senderId: myId.current,
-        data,
-      });
-    } catch (error) {
-      console.error('Error sending signal:', error);
-    }
+    const signalingDoc = doc(signalingCollection, targetId);
+    await setDoc(signalingDoc, { senderId: myId.current, data });
+    await updateDoc(signalingDoc, { data: null });
   };
 
   const endCall = async () => {
-    if (peer) peer.destroy();
-    try {
-      await updateDoc(doc(signalingCollection, myId.current), { data: null });
-    } catch (error) {
-      console.error('Error ending call:', error);
-    }
+    peer?.destroy();
     setPeer(null);
     setIsCallStarted(false);
-    if (myStreamRef.current?.srcObject) {
-      myStreamRef.current.srcObject.getTracks().forEach((track) => track.stop());
-    }
+    setIsReceivingCall(false);
+    await updateDoc(doc(signalingCollection, myId.current), { data: null });
   };
 
   const setUpPeerListeners = (newPeer, targetId) => {
-    newPeer.on('signal', (data) => {
-      sendSignal(data, targetId);
-    });
-
+    newPeer.on('signal', (data) => sendSignal(data, targetId));
     newPeer.on('stream', (stream) => {
-      otherStreamRef.current.srcObject = stream;
+      if (otherStreamRef.current) {
+        otherStreamRef.current.srcObject = stream;
+      }
     });
-
     newPeer.on('connect', () => console.log('Peers connected!'));
     newPeer.on('error', (err) => console.error('Peer error:', err));
   };
 
   const handleStartCall = () => {
     setIsCallStarted(true);
-    createPeer(true); // Act as initiator
+    createPeer(true);
   };
 
   const handleAcceptCall = () => {
-    setIsReceivingCall(false);
-    setIsCallStarted(true);
+    if (!incomingOffer) return; // Ensure there is an offer to process
+  
+    const { senderId, data } = incomingOffer;
+  
+    // const newPeer = new Peer({
+    //   initiator: false,
+    //   stream: myStreamRef.current?.srcObject,
+    //   trickle: false,
+    //   config: {
+    //     iceServers: [
+    //       { urls: ['stun:stun.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] },
+    //     ],
+    //   },
+    // });
+  
+    // setUpPeerListeners(newPeer, senderId);
+    // setPeer(newPeer);
+  
+    // newPeer.signal(data); // Signal the stored offer
+  
+    setIsReceivingCall(false); // Clear the receiving state
+    setIncomingOffer(null); // Clear the stored offer
+    setIsCallStarted(true); // Mark call as started
   };
 
   return (
     <div>
       <h1>Video Call</h1>
       <p>Your Video ID: {myId.current}</p>
-      <video
-        ref={myStreamRef}
-        autoPlay
-        playsInline
-        muted={isMuted}
-        style={{ width: '45%', marginRight: '5px' }}
-      />
-      <video
-        ref={otherStreamRef}
-        autoPlay
-        playsInline
-        style={{ width: '45%' }}
-      />
+      <video ref={myStreamRef} autoPlay playsInline muted style={{ width: '45%', marginRight: '5px' }} />
+      <video ref={otherStreamRef} autoPlay playsInline style={{ width: '45%' }} />
 
       {isStreamStarted && (
         <div style={{ marginTop: '20px' }}>
