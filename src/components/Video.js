@@ -13,7 +13,7 @@ const VideoCall = () => {
   // const myId = useRef(Math.random().toString(36).substring(2, 5).toLowerCase()); // Short Random ID
   const myId = useRef(auth.currentUser.uid.substring(2, 5).toLowerCase());
   const [isMuted, setIsMuted] = useState(true);
-  const [isVideoOff, setIsVideoOff] = useState(false);
+  const [isVideoOff, setIsVideoOff] = useState(true);
   const [isStreamStarted, setIsStreamStarted] = useState(false);
   const [incomingOffer, setIncomingOffer] = useState(null); 
   const signalingCollection = collection(db, "signaling"); // Firestore collection for signaling
@@ -160,18 +160,18 @@ const VideoCall = () => {
       {isStreamStarted && (
         <div style={{ marginTop: '20px' }}>
           <button className='btn' onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
-          <button className='btn' onClick={toggleVideo}>{isVideoOff ? 'Turn Video On' : 'Turn Video Off'}</button>
+          <button className='btn' onClick={toggleVideo}>{!isVideoOff ? 'Turn Video On' : 'Turn Video Off'}</button>
         </div>
       )}
 
       {!isCallStarted && (
         <div style={{ marginTop: '20px' }}>
           <button className='btn' onClick={startStream}>Start Stream</button>
-          <input
+         {isStreamStarted && <> <input
             type="text"
             placeholder="Enter Peer ID"
             value={otherPeerId}
-            onChange={(e) => setOtherPeerId(e.target.value)}
+            onChange={(e) => setOtherPeerId(e.target.value.toLowerCase())}
             style={{
               marginLeft: '10px',
               marginRight: '10px',
@@ -182,6 +182,7 @@ const VideoCall = () => {
             }}
           />
           <button className='btn' onClick={handleStartCall}>Start Call</button>
+          </>}
         </div>
       )}
 
