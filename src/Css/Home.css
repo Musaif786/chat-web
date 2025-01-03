@@ -99,6 +99,23 @@
     
 
 }
+.messages_user a{
+    position: relative;
+    /* background-color: red; */
+     display: block;
+     justify-content: center;
+     text-decoration: none;
+     color: white;
+     height: 22px;
+     width: 18%;
+
+}
+.messages_user a i{
+    position: absolute;
+left: 5px;
+top: 8px;
+font-size: 15px;
+}
 
 @media screen and (min-width: 300px) and (max-width: 768px) {
     .user_searchbox input{

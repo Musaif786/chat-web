@@ -26,6 +26,7 @@ import useGeoLocation from "../components/useGeoLocation";
 import "../Css/Home.css";
 import Searchuser from "../components/Searchuser";
 import { Followusers } from "../components/Followusers";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const Home = () => {
@@ -276,6 +277,8 @@ const Home = () => {
               {/* sidebar to hide the users list */}
               <button title="click to expand screen" id="openbar" onClick={slidebar}><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
               </button>
+              <Link to="/box"><i class="fa fa-video-camera" aria-hidden="true"> Video Call </i> </Link>
+              
               {/* typing added */}
               {/* <p className="typing">{text>2 ? ("typing..."):("")}</p> */}
 
@@ -284,6 +287,7 @@ const Home = () => {
                 <div>
                   <Colors />
                 </div>
+                
 
 
                 <div
@@ -303,6 +307,7 @@ const Home = () => {
 
           </div> */}
                 {/* <Moment fromNow={chat.createdAt.toDate()}></Moment> */}
+                
 
               </div>
             </div>
