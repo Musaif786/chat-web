@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Peer from 'simple-peer';
+import { db } from "../firebase"; // Ensure correct Firebase config
+import { collection, doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
 
 const VideoCall = () => {
   const [isCallStarted, setIsCallStarted] = useState(false);
@@ -13,9 +15,10 @@ const VideoCall = () => {
   const [isMuted, setIsMuted] = useState(true);
   const [isVideoOff, setIsVideoOff] = useState(false);
   const [isStreamStarted, setIsStreamStarted] = useState(false);
+  const signalingCollection = collection(db, "signaling"); // Firestore collection for signaling
 
   const toggleMute = () => {
-    if (myStreamRef.current && myStreamRef.current.srcObject) {
+    if (myStreamRef.current?.srcObject) {
       const audioTracks = myStreamRef.current.srcObject.getAudioTracks();
       if (audioTracks.length > 0) {
         audioTracks[0].enabled = !isMuted;
@@ -25,7 +28,7 @@ const VideoCall = () => {
   };
 
   const toggleVideo = () => {
-    if (myStreamRef.current && myStreamRef.current.srcObject) {
+    if (myStreamRef.current?.srcObject) {
       const videoTracks = myStreamRef.current.srcObject.getVideoTracks();
       if (videoTracks.length > 0) {
         videoTracks[0].enabled = !isVideoOff;
@@ -35,51 +38,39 @@ const VideoCall = () => {
   };
 
   useEffect(() => {
-    // Initialize signaling channel
-    signalingChannel.current = new BroadcastChannel('webrtc');
-    console.log(`Signaling channel initialized for ID: ${myId.current}`);
+    const unsubscribe = onSnapshot(doc(signalingCollection, myId.current), (docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const { senderId, data } = docSnapshot.data();
 
-    // Listen for signaling messages
-    signalingChannel.current.onmessage = (event) => {
-      const { data, targetId, senderId } = event.data;
+        if (data.type === 'offer') {
+          setIsReceivingCall(true);
 
-      if (targetId !== myId.current) return; // Ignore messages not meant for this peer
-      console.log('Received signal:', data);
+          const newPeer = new Peer({
+            initiator: false,
+            stream: myStreamRef.current?.srcObject,
+            trickle: false,
+            config: {
+              iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
+            },
+          });
 
-      if (data.type === 'offer') {
-        // Notify user of an incoming call
-        setIsReceivingCall(true);
-
-        // Create a new peer to answer the call
-        const newPeer = new Peer({
-          initiator: false,
-          stream: myStreamRef.current.srcObject,
-          trickle: false,
-        });
-
-        setUpPeerListeners(newPeer, senderId);
-        setPeer(newPeer);
-
-        // Respond to the offer
-        newPeer.signal(data);
-      } else if (data.type === 'answer') {
-        peer?.signal(data);
-      } else if (data.candidate) {
-        peer?.signal(data);
+          setUpPeerListeners(newPeer, senderId);
+          setPeer(newPeer);
+          newPeer.signal(data);
+        } else if (data.type === 'answer' || data.candidate) {
+          peer?.signal(data);
+        }
       }
-    };
+    });
 
-    return () => {
-      signalingChannel.current?.close(); // Cleanup on component unmount
-    };
+    return () => unsubscribe();
   }, [peer]);
 
   const startStream = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
       myStreamRef.current.srcObject = stream;
-      setIsStreamStarted(true)
-
+      setIsStreamStarted(true);
     } catch (error) {
       console.error('Error accessing media devices:', error);
     }
@@ -88,31 +79,54 @@ const VideoCall = () => {
   const createPeer = (initiator) => {
     const newPeer = new Peer({
       initiator,
-      stream: myStreamRef.current.srcObject,
+      stream: myStreamRef.current?.srcObject,
       trickle: false,
+      config: {
+        iceServers: [
+          { urls: ['stun:stun.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] },
+        ],
+      },
     });
 
     setUpPeerListeners(newPeer, otherPeerId);
     setPeer(newPeer);
   };
 
+  const sendSignal = async (data, targetId) => {
+    try {
+      const signalingDoc = doc(signalingCollection, targetId);
+      await setDoc(signalingDoc, {
+        senderId: myId.current,
+        data,
+      });
+    } catch (error) {
+      console.error('Error sending signal:', error);
+    }
+  };
+
+  const endCall = async () => {
+    if (peer) peer.destroy();
+    try {
+      await updateDoc(doc(signalingCollection, myId.current), { data: null });
+    } catch (error) {
+      console.error('Error ending call:', error);
+    }
+    setPeer(null);
+    setIsCallStarted(false);
+    if (myStreamRef.current?.srcObject) {
+      myStreamRef.current.srcObject.getTracks().forEach((track) => track.stop());
+    }
+  };
+
   const setUpPeerListeners = (newPeer, targetId) => {
-    // Handle signaling
     newPeer.on('signal', (data) => {
-      console.log('Sending signal:', data);
-      signalingChannel.current?.postMessage({ data, targetId, senderId: myId.current });
+      sendSignal(data, targetId);
     });
 
-    signalingChannel.current.onmessage = (event) => {
-      console.log('Received message:', event.data); // Check if this logs when messages are received
-    };
-
-    // Handle incoming remote stream
     newPeer.on('stream', (stream) => {
       otherStreamRef.current.srcObject = stream;
     });
 
-    // Debugging
     newPeer.on('connect', () => console.log('Peers connected!'));
     newPeer.on('error', (err) => console.error('Peer error:', err));
   };
@@ -130,36 +144,46 @@ const VideoCall = () => {
   return (
     <div>
       <h1>Video Call</h1>
-      <p >Your Video ID: ' {myId.current} '</p>
-      {/* <video ref={myStreamRef} autoPlay playsInline muted style={{ width: '45%', marginRight: '10px' }} />
-      <video ref={otherStreamRef} autoPlay playsInline style={{ width: '45%' }} /> */}
+      <p>Your Video ID: {myId.current}</p>
+      <video
+        ref={myStreamRef}
+        autoPlay
+        playsInline
+        muted={isMuted}
+        style={{ width: '45%', marginRight: '5px' }}
+      />
+      <video
+        ref={otherStreamRef}
+        autoPlay
+        playsInline
+        style={{ width: '45%' }}
+      />
 
-<video ref={myStreamRef} autoPlay playsInline muted={isMuted} style={{ width: '45%', height:'20',maxWidth:'40%', marginRight: '5px' }} />
-      <video ref={otherStreamRef} autoPlay playsInline style={{ width: '45%',maxHeight:'40%',maxWidth:'40%'}} />
-      
-      
-      {isStreamStarted &&
-      <div style={{ marginTop: '20px' }}>
-        <button className='btn' onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
-        <button className='btn' onClick={toggleVideo}>{isVideoOff ? 'Turn Video On' : 'Turn Video Off'}</button>
-      </div>
-}
-
+      {isStreamStarted && (
+        <div style={{ marginTop: '20px' }}>
+          <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
+          <button onClick={toggleVideo}>{isVideoOff ? 'Turn Video On' : 'Turn Video Off'}</button>
+        </div>
+      )}
 
       {!isCallStarted && (
-        <div className="user_searchbox12" style={{ marginTop: '20px' }}>
-          <button className='btn' onClick={startStream}>Start Stream</button>
-          <input 
+        <div style={{ marginTop: '20px' }}>
+          <button onClick={startStream}>Start Stream</button>
+          <input
             type="text"
             placeholder="Enter Peer ID"
             value={otherPeerId}
             onChange={(e) => setOtherPeerId(e.target.value)}
-            style={{ marginLeft: '10px', marginRight: '10px' , maxWidth:'40%', height: '30px',
-              width: '60vw',
+            style={{
+              marginLeft: '10px',
+              marginRight: '10px',
+              maxWidth: '40%',
+              height: '30px',
               borderRadius: '6px',
-              border: '1px solid green'}}
+              border: '1px solid green',
+            }}
           />
-          <button className='btn' onClick={handleStartCall}>Start Call</button>
+          <button onClick={handleStartCall}>Start Call</button>
         </div>
       )}
 
@@ -167,6 +191,12 @@ const VideoCall = () => {
         <div style={{ marginTop: '20px' }}>
           <p>You are receiving a call!</p>
           <button onClick={handleAcceptCall}>Accept Call</button>
+        </div>
+      )}
+
+      {isCallStarted && (
+        <div style={{ marginTop: '20px' }}>
+          <button onClick={endCall}>End Call</button>
         </div>
       )}
     </div>
