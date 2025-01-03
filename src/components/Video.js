@@ -10,7 +10,7 @@ const VideoCall = () => {
   const [otherPeerId, setOtherPeerId] = useState('');
   const myStreamRef = useRef(null);
   const otherStreamRef = useRef(null);
-  const myId = useRef(Math.random().toString(36).substring(2, 5)); // Short Random ID
+  const myId = useRef(Math.random().toString(36).substring(2, 5).toLowerCase()); // Short Random ID
   const [isMuted, setIsMuted] = useState(true);
   const [isVideoOff, setIsVideoOff] = useState(false);
   const [isStreamStarted, setIsStreamStarted] = useState(false);
@@ -158,14 +158,14 @@ const VideoCall = () => {
 
       {isStreamStarted && (
         <div style={{ marginTop: '20px' }}>
-          <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
-          <button onClick={toggleVideo}>{isVideoOff ? 'Turn Video On' : 'Turn Video Off'}</button>
+          <button className='btn' onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
+          <button className='btn' onClick={toggleVideo}>{isVideoOff ? 'Turn Video On' : 'Turn Video Off'}</button>
         </div>
       )}
 
       {!isCallStarted && (
         <div style={{ marginTop: '20px' }}>
-          <button onClick={startStream}>Start Stream</button>
+          <button className='btn' onClick={startStream}>Start Stream</button>
           <input
             type="text"
             placeholder="Enter Peer ID"
@@ -180,20 +180,20 @@ const VideoCall = () => {
               border: '1px solid green',
             }}
           />
-          <button onClick={handleStartCall}>Start Call</button>
+          <button className='btn' onClick={handleStartCall}>Start Call</button>
         </div>
       )}
 
       {isReceivingCall && (
         <div style={{ marginTop: '20px' }}>
           <p>You are receiving a call!</p>
-          <button onClick={handleAcceptCall}>Accept Call</button>
+          <button className='btn' onClick={handleAcceptCall}>Accept Call</button>
         </div>
       )}
 
       {isCallStarted && (
         <div style={{ marginTop: '20px' }}>
-          <button onClick={endCall}>End Call</button>
+          <button className='btn' onClick={endCall}>End Call</button>
         </div>
       )}
     </div>
