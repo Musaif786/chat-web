@@ -1,9 +1,11 @@
 import React from "react";
 import Attachment from "./svg/Attachment";
 
-const MessageForm = ({ handleSubmit, text, setText, setImg }) => {
+const MessageForm = ({ handleSubmit, text, setText, setImg , typings}) => {
   return (
+    <>  
     <form className="message_form" onSubmit={handleSubmit}>
+      <div className="phone_typing_indi"> <p className="typing">{typings.isTyping ? ("typing...") : null}</p> </div> 
       <label htmlFor="img">
         <Attachment />
       </label>
@@ -26,6 +28,7 @@ const MessageForm = ({ handleSubmit, text, setText, setImg }) => {
         <button className="btn">Send</button>
       </div>
     </form>
+    </>
   );
 };
 

@@ -291,6 +291,14 @@ color: black;
   justify-content: center;
   align-items: center;
 }
+.message_form .phone_typing_indi{
+  display: none;
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  font-size: 14px;
+  color: var(--color-3);
+}
 .message_form input {
   width: 40vw;
   margin: 0px 10px 10px;
@@ -464,6 +472,15 @@ color: black;
   .message_wrapper p {
     max-width: 75%;
   }
+
+  .message_form .phone_typing_indi{
+  display: block;
+  position: absolute;
+  top: -40px;
+  left: 12px;
+  font-size: 12px;
+  color: var(--color-4);
+}
 }
 
 @media screen and (max-width: 576px) {

@@ -318,12 +318,14 @@ const Home = () => {
                 ))
                 : null}
             </div>
+            {/* <p className="typing">{typings.isTyping ? ("typing...") : null}</p> */}
             <MessageForm
               handleSubmit={handleSubmit}
               text={text}
               setText={setText}
               setImg={setImg}
               chat={chat} //this mean user details
+              typings = {typings}
             />
           </>
         ) : (
