@@ -574,6 +574,14 @@ color: black;
     font-size: 14px;
   }
   
+   .message_form .phone_typing_indi{
+  display: block;
+  position: absolute;
+  top: -40px;
+  left: 12px;
+  font-size: 12px;
+  color: var(--color-4);
+}
   
   .message_wrapper p {
     max-width: 75%;
