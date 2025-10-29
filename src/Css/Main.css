@@ -197,18 +197,19 @@
 }
 .mainh3 span:nth-child(even){
     color: red;
-    background: linear-gradient(to right, rgb(25, 197, 126), rgba(20, 29, 200, 0.918), yellow);
+    background: linear-gradient(to right, yellow);
     -webkit-background-clip: text; /* Clips the background to the text */
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     letter-spacing: 1px;
+
     
     
 }
 .mainh3 span:nth-child(odd){
     /* color: blue; */
     animation:spin 10s linear infinite;
-    background: linear-gradient(to right, red, orange, yellow);
+    background: linear-gradient(to right, orange, yellow);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;
     font-weight: 800;
@@ -237,7 +238,7 @@ hr {
     border-radius: 20px;
     /* background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
     background-clip: padding-box;
-    box-shadow: 2px 1px 3px 1px white;
+    box-shadow: 3px 2px 5px 1px rgb(131, 129, 129);
 
 }
 
