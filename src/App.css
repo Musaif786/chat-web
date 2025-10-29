@@ -573,11 +573,12 @@ color: black;
   } 
   .message_form input {
     width: 42vw;
-    margin: 0px 10px;
+    margin: 12px 5px 10px 10px;
     height: 30px;
+    /* background-color: red; */
   }
   .message_form .btn {
-    margin: 1px;
+    margin: 10px 1px 8px 1px;
     padding: 8px 6px;
     font-size: 14px;
   }
