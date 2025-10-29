@@ -561,12 +561,20 @@ color: black;
   .sm_screen {
     display: inline-block;
   }
+  .message_form {
+    /* background-color: red; */
+    bottom: 2px;
+    left: 0%;
+    width: 100%;
+    padding: 0px 5px;
+  }
   .home_container.openbar .message_form input{
     width: 70vw;
   } 
   .message_form input {
-    width: 45vw;
+    width: 42vw;
     margin: 0px 10px;
+    height: 30px;
   }
   .message_form .btn {
     margin: 1px;
